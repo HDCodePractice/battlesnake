@@ -1,4 +1,4 @@
-function hdcola_getDirection(grid,snake,apple,direction){
+function hdcola_getDirection(gridSize,snake,apple,direction){
     if (direction == "l") {
         return "d";
     }else if (direction == "d") {

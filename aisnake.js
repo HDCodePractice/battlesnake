@@ -80,7 +80,7 @@ function checkOnApple() {
 
 function updateSnake(){
     if (!gameOver){
-        direction = ais['sicheng'](grid,snake,apple,direction);
+        direction = ais['sicheng'](gridSize,snake,apple,direction);
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
