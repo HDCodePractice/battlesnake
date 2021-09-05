@@ -47,3 +47,13 @@ ais['hdcola'] = hdcola_getDirection;
 #### 在html中加入自己的AI脚本
 
 最后请在 [aisnake.html](https://github.com/HDCodePractice/battlesnake/blob/main/aisnake.html) 中加入你自己的AI代码脚本。
+
+#### 运行你的AI蛇
+
+如果要运行你的AI蛇，现在需要去手动修改 `aisnake.js` 的第83行
+
+https://github.com/HDCodePractice/battlesnake/blob/eb9e4048a7cfd152aa09ea33b4af53bce4057596/aisnake.js#L83
+
+把 `ais['sicheng']` 中的 `sicheng` 你在自己脚本里注册的名字即可。
+
+晚些还会加入自动加载功能，函数接口也会发生一点变化，敬请参与 :) 
