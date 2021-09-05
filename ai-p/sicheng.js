@@ -1,4 +1,4 @@
-function hdcola_getDirection(grid,snake,apple,direction){
+function sicheng_getDirection(grid,snake,apple,direction){
     if (direction == "l") {
         return "d";
     }else if (direction == "d") {
@@ -10,4 +10,4 @@ function hdcola_getDirection(grid,snake,apple,direction){
     }
 }
 
-ais['hdcola'] = hdcola_getDirection;
+ais['sicheng'] = sicheng_getDirection;

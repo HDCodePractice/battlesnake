@@ -1,6 +1,7 @@
 const cellSize = 20;
 const gridSize = 15;
 const scoreHeight = 50;
+const aiListWith = 100;
 const speed = 2;
 
 let grid = [];
@@ -10,6 +11,7 @@ let score;
 let apple = 0;
 let gameOver = false;
 let appleCount = 3;
+let ais = {};
 
 function colRowToIndex(col, row) {
   return row * gridSize + col;
@@ -46,7 +48,7 @@ function newGame(){
 }
 
 function setup() {
-    createCanvas(cellSize * gridSize + 2, cellSize * gridSize + 2 + scoreHeight);
+    createCanvas(cellSize * gridSize + 2 + aiListWith, cellSize * gridSize + 2 + scoreHeight);
     newGame();
     gameOver = false;
     frameRate(speed);
@@ -56,15 +58,6 @@ function keyPressed() {
     if (key === 'Enter') {
         setup();
     }
-    // if (keyCode === LEFT_ARROW && snake[1] != snake[0] - 1) {
-    //         direction = "l";
-    // } else if (keyCode === RIGHT_ARROW && snake[1] != snake[0] + 1) {
-    //         direction = "r";
-    // } else if (keyCode === UP_ARROW && snake[1] != snake[0] - gridSize) {
-    //     direction = "u";
-    // } else if (keyCode === DOWN_ARROW && snake[1] != snake[0] + gridSize) {
-    //     direction = "d";
-    // }
 }
 
 function resetApple() {
@@ -87,7 +80,7 @@ function checkOnApple() {
 
 function updateSnake(){
     if (!gameOver){
-        direction = getDirection(grid,snake,apple,direction);
+        direction = ais['sicheng'](grid,snake,apple,direction);
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
@@ -134,6 +127,7 @@ function drawGameOver() {
         height/2-10
     );
 }
+
 
 function draw() {
     if (gameOver){
