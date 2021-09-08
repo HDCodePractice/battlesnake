@@ -2,7 +2,7 @@ const cellSize = 20;
 const gridSize = 15;
 const scoreHeight = 50;
 const aiListWith = 100;
-const speed = 2;
+let speed = 2;
 
 let grid = [];
 let snake = [];
@@ -80,7 +80,7 @@ function checkOnApple() {
 
 function updateSnake(){
     if (!gameOver){
-        direction = ais['sicheng'](gridSize,snake,apple,direction);
+        direction = ais['cicheng'](gridSize,snake,apple,direction);
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
