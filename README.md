@@ -1,15 +1,15 @@
 # battlesnake
 贪吃蛇大战，从人玩、AI玩到人人对战、人机对战、AI与AI对战的疯狂贪吃蛇
 
-游戏可以访问 [这里](https://hdcodepractice.github.io/battlesnake/)
+游戏可以访问 [这里](https://lotuswalking.github.io/battlesnake/)
 
 ## 单人独自玩
 
-可以去 [单人游戏](https://hdcodepractice.github.io/battlesnake/snake.html) 按上下左右即可玩起来
+可以去 [单人游戏](https://lotuswalking.github.io/battlesnake/snake.html) 按上下左右即可玩起来
 
 ## 单个AI
 
-可以去 [单AI游戏](https://hdcodepractice.github.io/battlesnake/aisnake.html) 选择你想要运行的AI
+可以去 [单AI游戏](https://lotuswalking.github.io/battlesnake/aisnake.html) 选择你想要运行的AI
 
 ### 如何加入自己的AI
 
