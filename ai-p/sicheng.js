@@ -26,31 +26,31 @@ function cicheng_getDirection(gridSize,snake,apple,direction){
     // {
     //     return directions[0]
     // }
-    //检查苹果和舌头的位置,尽可能朝向苹果方向,可以考虑继续优化
+    //检查苹果和蛇头的位置,尽可能朝向苹果方向,可以考虑继续优化
     distance = apple - snake[0];
     distanceX = distance % gridSize;
     distanceY = parseInt(distance/gridSize);
-    if(distance > 0) {
-        if(distanceX==0) {
-            if(directions.includes("d")) {
-                return "d";
-            }
-        }else if(distanceY == 0){
-            if(directions.includes("r")) {
-                return "r";
-            }
-        }
-    } else {
-        if(distanceX==0) {
-            if(directions.includes("u")) {
-                return "u";
-            }
-        }else if(distanceY == 0){
-            if(directions.includes("l")) {
-                return "l";
-            }
-        }
-        }
+    // if(distance > 0) {
+    //     if(distanceX==0) {
+    //         if(directions.includes("d")) {
+    //             return "d";
+    //         }
+    //     }else if(distanceY == 0){
+    //         if(directions.includes("r")) {
+    //             return "r";
+    //         }
+    //     }
+    // } else {
+    //     if(distanceX==0) {
+    //         if(directions.includes("u")) {
+    //             return "u";
+    //         }
+    //     }else if(distanceY == 0){
+    //         if(directions.includes("l")) {
+    //             return "l";
+    //         }
+    //     }
+    //     }
     
     console.log(directions);
     if(directions.length > 0){
