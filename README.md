@@ -62,7 +62,7 @@ https://github.com/HDCodePractice/battlesnake/blob/eb9e4048a7cfd152aa09ea33b4af5
 ## 相关资源
 
 * [我们的Telegram频道](https://t.me/ChildPrograming) 这里有最新的进展，欢迎在评论里讨论
-* [VS Code](https://code.visualstudio.com/)]  编写代码的IDE
+* [VS Code](https://code.visualstudio.com/)  编写代码的IDE
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 在VS Code中运行一个HTTP服务器，方便调试你的代码
 
 =========================================
