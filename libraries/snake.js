@@ -76,6 +76,12 @@ function myInputEvent3() {
     inp = int(this.value());
     if (!isNaN(inp)) {
         hpMax = inp;
+        hpPercent = hp*10/hpMax;
+        if (hpMax*hpPercent > hpMax) {
+            hp = hpMax;
+        } else {
+            int(hp = hpMax*hpPercent);
+        }
     }
 }
 
@@ -223,7 +229,7 @@ function drawGameOver() {
     fill(255,0,0)
     textSize(int(width/20));
     text('GAME OVER\r\nClick restart button to restart',width/5,height/2)
-    button.html(' Restart ');
+    button.html(':- Restart -:');
 }
 
 function drawHp() {
