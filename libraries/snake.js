@@ -191,32 +191,24 @@ function checkOnApple() {
                 resetApple(apple.indexOf(snake[0]+1));
                 score += 1;
                 isApple = true;
-            } else {
-                hp -= 1;
             }
         } else if (direction === 'l') {
             if (snake[0] === checkedApple+1) {
                 resetApple(apple.indexOf(snake[0]-1));
                 score += 1;
                 isApple = true;
-            } else {
-                hp -= 1;
             }
         } else if (direction === 'd') {
             if (snake[0] === checkedApple-gridSize) {
                 resetApple(apple.indexOf(snake[0]+gridSize));
                 score += 1;
                 isApple = true;
-            } else {
-                hp -= 1;
             }
         } else if (direction === 'u') {
             if (snake[0] === checkedApple+gridSize) {
                 resetApple(apple.indexOf(snake[0]-gridSize));
                 score += 1;
                 isApple = true;
-            } else {
-                hp -= 1;
             }
         }
     }
