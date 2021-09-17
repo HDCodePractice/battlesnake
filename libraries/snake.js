@@ -46,7 +46,7 @@ function newGame(){
         colRowToIndex(2,int(gridSize/2)),
         colRowToIndex(1,int(gridSize/2))
     ];
-    direction = "r";
+    direction = "";
     apples = [];
     apples.push(colRowToIndex(int(gridSize* 3/4), int(gridSize/2)));
     for (let index = 1; index < appleCount; index++) {
@@ -207,4 +207,47 @@ function draw() {
         startButton.html("Restart Game");
     }
     drawLables();
+}
+
+function updateSnake(){
+    if (!gameOver){
+        if (direction === "r"){
+            if (snake[0] % gridSize === gridSize - 1){
+                gameOver = true;
+            }else{
+                checkOnApple();
+                snake.splice(0,0,snake[0]+1)
+            }
+        }else if (direction === "u"){
+            if (snake[0] < gridSize){
+                gameOver = true;
+            }else{
+                checkOnApple();
+                snake.splice(0,0,snake[0]-gridSize);
+            }
+        }else if (direction === "d"){
+            if (snake[0] >= gridSize * (gridSize-1)){
+                gameOver = true;
+            }else{
+                checkOnApple();
+                snake.splice(0,0,snake[0]+gridSize);
+            }
+        }else if (direction === "l"){
+            if (snake[0] % gridSize === 0){
+                gameOver = true;
+            }else{
+                checkOnApple();
+                snake.splice(0,0,snake[0]-1);
+            }
+        }
+        for (let s = 1; s < snake.length; s++) {
+            if (snake[0] == snake[s]) {
+                gameOver = true;
+            }
+        }
+        if (hp <= 0 || (turn >= maxTurn && maxTurn != 0)){
+            gameOver = true;
+        }
+    }
+    moreUpdate();
 }
