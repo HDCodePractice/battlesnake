@@ -1,14 +1,8 @@
 let ais = {};
 
-function keyPressed() {
-    if (key === 'Enter') {
-        setup();
-    }
-}
-
 function updateSnake(){
     if (!gameOver){
-        direction = ais['cicheng'](gridSize,snake,apple,direction);
+        direction = ais['sicheng'](gridSize,snake,apples,direction);
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
@@ -42,6 +36,9 @@ function updateSnake(){
             if (snake[0] == snake[s]) {
                 gameOver = true;
             }
+        }
+        if (hp <= 0 || (turn >= maxTurn && maxTurn != 0)){
+            gameOver = true;
         }
     }
 }

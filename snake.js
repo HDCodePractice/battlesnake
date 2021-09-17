@@ -1,7 +1,4 @@
 function keyPressed() {
-    if (key === 'Enter') {
-        setup();
-    }
     if (keyCode === LEFT_ARROW && snake[1] != snake[0] - 1) {
             direction = "l";
     } else if (keyCode === RIGHT_ARROW && snake[1] != snake[0] + 1) {
@@ -48,6 +45,9 @@ function updateSnake(){
             if (snake[0] == snake[s]) {
                 gameOver = true;
             }
+        }
+        if (hp <= 0 || (turn >= maxTurn && maxTurn != 0)){
+            gameOver = true;
         }
     }
 }
