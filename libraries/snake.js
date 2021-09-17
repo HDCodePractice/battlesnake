@@ -16,7 +16,7 @@ let speed = 7;
 let hpMax = 100;
 let hp = hpMax;
 let turn = 0;
-let turnMax = 100;
+let turnMax = 0;
 
 
 function setup() {
@@ -93,7 +93,7 @@ function myInputEvent4() {
     inp = int(this.value());
     if (!isNaN(inp)) {
         turnMax = inp;
-        if (turn > turnMax) {
+        if (turn > turnMax && turnMax !== 0) {
             gameOver = true;
         }
     }
