@@ -5,6 +5,6 @@ function moreUpdate(){
         direction = "r"
     }
     if (!gameOver){
-        direction = ais['hdcola'](gridSize,snake,apples,direction);
+        direction = ais['cicheng'](gridSize,snake,apples,direction);
     }
 }
