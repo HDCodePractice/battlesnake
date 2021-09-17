@@ -79,6 +79,7 @@ function settings() {
     startButton.position(width - selectWidth + 50, height/2+195);
     startButton.size(selectWidth - 100,20);
     startButton.mousePressed(newGame);
+    moreSettings();
 }
 
 function drawLables() {
