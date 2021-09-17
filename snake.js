@@ -1,7 +1,4 @@
 function keyPressed() {
-    if (key === 'Enter') {
-        setup();
-    }
     if (keyCode === LEFT_ARROW && snake[1] != snake[0] - 1) {
             direction = "l";
     } else if (keyCode === RIGHT_ARROW && snake[1] != snake[0] + 1) {
@@ -19,28 +16,36 @@ function updateSnake(){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
             }else{
-                checkOnApple();
+                if (!checkOnApple()) {
+                    snake.splice(snake.length-1, 1)
+                }
                 snake.splice(0,0,snake[0]+1)
             }
         }else if (direction === "u"){
             if (snake[0] < gridSize){
                 gameOver = true;
             }else{
-                checkOnApple();
+                if (!checkOnApple()) {
+                    snake.splice(snake.length-1, 1)
+                }
                 snake.splice(0,0,snake[0]-gridSize);
             }
         }else if (direction === "d"){
             if (snake[0] >= gridSize * (gridSize-1)){
                 gameOver = true;
             }else{
-                checkOnApple();
+                if (!checkOnApple()) {
+                    snake.splice(snake.length-1, 1)
+                }
                 snake.splice(0,0,snake[0]+gridSize);
             }
         }else if (direction === "l"){
             if (snake[0] % gridSize === 0){
                 gameOver = true;
             }else{
-                checkOnApple();
+                if (!checkOnApple()) {
+                    snake.splice(snake.length-1, 1)
+                }
                 snake.splice(0,0,snake[0]-1);
             }
         }

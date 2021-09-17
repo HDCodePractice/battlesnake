@@ -1,4 +1,7 @@
 function sicheng_getDirection(gridSize,snake,apple,direction){
+    if (direction == '') {
+        direction = "l"
+    }
     if (direction == "l") {
         return "d";
     }else if (direction == "d") {
