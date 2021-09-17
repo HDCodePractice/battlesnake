@@ -2,6 +2,7 @@ let ais = {};
 
 function updateSnake(){
     if (!gameOver){
+        turn += 1;
         direction = ais['sicheng'](gridSize,snake,apple,direction);
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
@@ -46,6 +47,9 @@ function updateSnake(){
             }
         }
         if (hp < 0) {
+            gameOver = true;
+        }
+        if (turn > turnMax) {
             gameOver = true;
         }
     }
