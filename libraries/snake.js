@@ -76,11 +76,8 @@ function myInputEvent3() {
     inp = int(this.value());
     if (!isNaN(inp)) {
         hpMax = inp;
-        hpPercent = hp*10/hpMax;
-        if (hpMax*hpPercent > hpMax) {
+        if (hp > hpMax) {
             hp = hpMax;
-        } else {
-            int(hp = hpMax*hpPercent);
         }
     }
 }
