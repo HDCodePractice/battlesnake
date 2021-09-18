@@ -1,70 +1,42 @@
 var CheckFlag = true;
-var steps = ["l"];
+let start = true
+let resetPoint = false;
+let startRow;
+let resetSteps = [];
+let steps = [];
 function cicheng_getDirection(gridSize,snake,apples,direction){
     //检测最近的苹果
-    if(CheckFlag === true){
-        snakeTail = snake.slice(1);
-        let minSteps = 999;
-        let minApple ;
-        let stepsV = [];
-        let stepsH = [];
-        console.log(apples);
-        for(let i=0;i<apples.length;i++)
-        {
-            //检查是否在一条线上
-            let appleCol = apples[i]% gridSize;
-            let appleRow = Math.floor(apples[i] / gridSize);
-            let snakeCol = snake[0]% gridSize;
-            let snakeRow = Math.floor(snake[0] / gridSize);
-            let stepH = Math.abs(appleCol - snakeCol)
-            let stepV = Math.abs(appleRow - snakeRow);            
-            // console.log("steps required:",apples[i], stepH, stepV);    
-            let tempStepsV = [];
-            let directV = (appleRow > snakeRow) ? "d":"u";
-            for(let j =0; j < stepV; j++){
-                tempStepsV.push(directV);
-            }
-            let tempStepsH = [];
-            let directH = (appleCol > snakeCol) ? "r":"l";
-            for(let j =0;j < stepH; j++){
-                tempStepsH.push(directH);
-            }
-            let totalSteps = stepV + stepH;
-            if(minSteps > totalSteps) 
+    snakeRow = Math.floor(snake[0]/gridSize);
+    snakeCol = snake[0]%gridSize;
+    // console.log(snakeCol,gridSize)
+    if(gridSize %2 ===1) {  //表格奇数行
+        if(CheckFlag) {
+            for(let i=snakeCol;i<gridSize-1;i++) resetSteps.push("r");
+            for(let i=snakeRow;i>1;i--) resetSteps.push("u");
+            for(let i=gridSize-1;i>0;i--) resetSteps.push("l");
+            resetSteps.push("u"); //重置成功
+            resetSteps.push("r"); //重置成功
+            for(let x =0; x< Math.floor(gridSize/2)-1;x++)
             {
-                minSteps = totalSteps;
-                minApple = apples[i];
-                stepsV = tempStepsV.slice();
-                stepsH = tempStepsH.slice();
+                for(let i=0;i<gridSize-2;i++) resetSteps.push("r");
+                resetSteps.push("d");
+                for(let i=0;i<gridSize-2;i++) resetSteps.push("l");
+                resetSteps.push("d"); 
             }
+            
+            resetSteps.reverse();
+            CheckFlag = false;
         }
-        CheckFlag = false;
-        steps = checkObstacle(snake,snakeTail,stepsH,stepsV);
+        if(resetSteps) {
+        console.log(resetSteps);
+            let newDirection = resetSteps.pop();
+        
+        return newDirection;
+        }
 
-    }
-    console.log(steps);
-    if(!steps||steps.length <= 0) 
-    {
-        CheckFlag = true;
-        // console.log("走完步骤了:",CheckFlag);
-    }else{
-         direction = steps.pop();
-    }
-    return direction;
-    
-   
-}
-function checkObstacle(snake,snakeTail,stepsH,stepsV) {
-    let snakeHeader = {};
-    snakeHeader.snakeRight = snake[0]+1;
-    snakeHeader.snakeLeft = snake[0]-1;
-    snakeHeader.snakeDown = snake[0]+gridSize;
-    snakeHeader.snakeUp = snake[0]-gridSize;
-    if(stepsH.length>0 && stepsH[0]==="r"){
-        return (snakeTail.includes(snakeHeader.snakeRight))?stepsV.concat(stepsH):stepsH.concat(stepsV);
-    }
-    if(stepsV.length>0 && stepsV[0] ==="u") {
-        return (snakeTail.includes(snakeHeader.snakeDown))?stepsV.concat(stepsH):stepsH.concat(stepsV);
+        
+
+        
     }
 }
 
