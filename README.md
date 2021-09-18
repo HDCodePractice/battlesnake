@@ -20,7 +20,7 @@
 这是一个模板代码：
 
 ```
-function hdcola_getDirection(gridSize,snake,apple,direction){
+function hdcola_getDirection(gridSize,snake,apples,direction){
     if (direction == "l") {
         return "d";
     }else if (direction == "d") {
@@ -39,7 +39,7 @@ ais['hdcola'] = hdcola_getDirection;
 
 * gridSize: 为地图大小，地图为一个正方形，大小为 gridSize * gridSize
 * snake: 是一个数组，snake[0]为蛇头的坐标，这个坐标为 row * gridSize + col, 其中 row 为行号, col 为列号
-* apple: 是一个Int，表示苹果的坐标，与上面的坐标一样计算方式
+* apples: 是一个Int Array，包含所有苹果的坐标，与上面的坐标一样计算方式
 * direction: 是一个字符串，表示蛇头的方向，可能的值为："l","d","r","u"，分表代表左、下、右、上
 * 这个函数应该返回一个字符串，表示接下来蛇头的方向，值的内容能见上面direction的说明
 
