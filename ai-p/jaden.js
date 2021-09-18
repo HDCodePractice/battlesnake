@@ -1,5 +1,5 @@
 function jaden_getDirection(gridSize,snake,apples,direction){
-    return direction
+    return direction;
 }
 
 
