@@ -14,7 +14,6 @@ function moreUpdate(){
 
 }
 
-
 function moreSettings(){
     
 }

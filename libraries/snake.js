@@ -170,6 +170,7 @@ function checkOnApple() {
     } else {
         snake.splice(snake.length-1, 1)
     }
+    moreUpdate();
 }
 
 function drawGameOver() {
@@ -250,5 +251,4 @@ function updateSnake(){
             gameOver = true;
         }
     }
-    moreUpdate();
 }
