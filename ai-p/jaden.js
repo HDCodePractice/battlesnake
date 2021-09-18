@@ -1,3 +1,6 @@
 function jaden_getDirection(gridSize,snake,apples,direction){
-    ais['jaden'] = jaden_getDirection;
+    return direction
 }
+
+
+ais['jaden'] = jaden_getDirection;
