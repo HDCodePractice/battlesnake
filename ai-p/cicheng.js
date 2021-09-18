@@ -4,39 +4,63 @@ let resetPoint = false;
 let startRow;
 let resetSteps = [];
 let steps = [];
+
+function findNearestApple(gridSize,snake,apples,direction) {
+    // let snakeCol = snake[0]%gridSize;
+    let snakeRow = Math.floor(snake[0] % gridSize);
+    let minAppleDiff = 99;
+    let minApple = {};
+    apples.forEach((apple) => { //查找行最近的苹果
+    // console.log(apple);
+    let appleRow = Math.floor(apple / gridSize);
+    let appleCol = Math.floor(apple % gridSize);
+    let tempMinAppleDiff = Math.abs(snakeRow - appleRow);
+    if (minAppleDiff > tempMinAppleDiff) {
+        minAppleDiff = tempMinAppleDiff
+        minApple.row = appleRow;
+        minApple.col = appleCol;
+        minApple.minApple = apple;
+        }
+    });
+    // console.log(minApple);
+    return minApple;
+}
+
 function cicheng_getDirection(gridSize,snake,apples,direction){
     //检测最近的苹果
-    snakeRow = Math.floor(snake[0]/gridSize);
-    snakeCol = snake[0]%gridSize;
-    // console.log(snakeCol,gridSize)
+    let snakeRow = Math.floor(snake[0]/gridSize);
+    let snakeCol = snake[0]%gridSize;
+    minApple = findNearestApple(gridSize,snake,apples,direction);
+    // console.log(snakeCol,snakeRow,gridSize);
     if(gridSize %2 ===1) {  //表格奇数行
         if(CheckFlag) {
-            for(let i=snakeCol;i<gridSize-1;i++) resetSteps.push("r");
-            for(let i=snakeRow;i>1;i--) resetSteps.push("u");
-            for(let i=gridSize-1;i>0;i--) resetSteps.push("l");
-            resetSteps.push("u"); //重置成功
-            resetSteps.push("r"); //重置成功
-            for(let x =0; x< Math.floor(gridSize/2)-1;x++)
-            {
-                for(let i=0;i<gridSize-2;i++) resetSteps.push("r");
-                resetSteps.push("d");
-                for(let i=0;i<gridSize-2;i++) resetSteps.push("l");
-                resetSteps.push("d"); 
+            minApple = findNearestApple(gridSize,snake,apples,direction);
+            if(start) {
+            for(let i=snakeCol; i<gridSize-1; i++) resetSteps.push("r");
+            start = false;
             }
-            
-            resetSteps.reverse();
+            console.log(snakeRow,minApple.row)
+            // if(snakeRow > minApple.row) { //蛇头在苹果下面
+            //     for(let i=snakeRow; i=minApple.row; i--) resetSteps.push("u");                
+            // }else if (snakeRow < minApple.row) { //蛇头在苹果下面
+            //     for(let i=snakeRow; i=minApple.row; i++) resetSteps.push("d");
+            // }
+            // if(snakeCol > minAppleCol) { //蛇头在右侧,向左到头
+            //         for(let i=snakeCol;i=0;i--) resetSteps.push("l");
+            //     }else { //蛇头在左侧,向右到头
+            //         for(let i=minAppleCol;i=gridSize-1;i++) resetSteps.push("r");
+            // }
             CheckFlag = false;
         }
-        if(resetSteps) {
-        console.log(resetSteps);
+        if(resetSteps.length > 1) {
+        // console.log(resetSteps);
             let newDirection = resetSteps.pop();
-        
-        return newDirection;
-        }
-
-        
-
-        
+            return newDirection;
+        }else if(resetSteps.length === 1){
+            let newDirection = resetSteps.pop();
+            CheckFlag = true;
+            return newDirection;
+        }        
     }
 }
 
