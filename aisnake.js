@@ -46,7 +46,6 @@ function updateSnake(){
                 gameOver = true;
             }
         }
-        hp -= 1;
         if (hp < 0) {
             gameOver = true;
         }
