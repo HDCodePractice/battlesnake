@@ -66,6 +66,7 @@ https://github.com/HDCodePractice/battlesnake/blob/eb9e4048a7cfd152aa09ea33b4af5
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 在VS Code中运行一个HTTP服务器，方便调试你的代码
 
 =========================================
+
 ENGLISH
 =========================================
 Snake game battle: we have currently written the single-playera and single AI play versions; multiplayer battle, human-machine battle and AI *VS* AI battle on their way!
