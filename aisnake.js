@@ -50,7 +50,7 @@ function updateSnake(){
         if (hp < 0) {
             gameOver = true;
         }
-        if (turn > turnMax && turnMax !== 0) {
+        if (turn > turnMax) {
             gameOver = true;
         }
     }
