@@ -130,8 +130,9 @@ The automatic loading function will be added later, and the function interface w
 
 ## Related Resources
 
-     * [Our Telegram Channel](https://t.me/ChildPrograming) Here are the latest developments, welcome to discuss in the comments
-     * [VS Code](https://code.visualstudio.com/) IDE for writing code
-     * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) Run an HTTP server in VS Code to facilitate debugging of your code
+* [Our Telegram Channel](https://t.me/ChildPrograming) Here are the latest developments, welcome to discuss in the comments
+* [VS Code](https://code.visualstudio.com/) IDE for writing code
+* [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) Run an HTTP server in VS Code to facilitate debugging of your code
 =========================================
+
 作者/Written by: [hdcola](https://github.com/hdcola), [Sichengthebest](https://github.com/Sichengthebest)
