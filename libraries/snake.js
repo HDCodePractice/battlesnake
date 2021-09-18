@@ -170,7 +170,6 @@ function checkOnApple() {
     } else {
         snake.splice(snake.length-1, 1)
     }
-    moreUpdate();
 }
 
 function drawGameOver() {
@@ -213,32 +212,30 @@ function draw() {
 
 function updateSnake(){
     if (!gameOver){
+        checkOnApple();
+        moreUpdate();
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
-            }else{
-                checkOnApple();
+            }else{                
                 snake.splice(0,0,snake[0]+1)
             }
         }else if (direction === "u"){
             if (snake[0] < gridSize){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]-gridSize);
             }
         }else if (direction === "d"){
             if (snake[0] >= gridSize * (gridSize-1)){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]+gridSize);
             }
         }else if (direction === "l"){
             if (snake[0] % gridSize === 0){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]-1);
             }
         }
