@@ -9,7 +9,10 @@ function moreUpdate(){
         if (ai == ""){
             ai = 'hdcola';
         }
-        direction = ais[ai](gridSize,snake,apples,direction);
+        d = ais[ai](gridSize,snake,apples,direction);
+        if (["r","l","u","d"].includes(d)){
+            direction = d;
+        }
     }
     fill(0,0,0);
     textSize(10);
