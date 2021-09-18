@@ -15,8 +15,6 @@ let appleCount = 1;
 let speed = 7;
 let hpMax = 100;
 let hp = hpMax;
-let turn = 0;
-let turnMax = 100;
 
 
 function setup() {
@@ -39,12 +37,7 @@ function setup() {
     inp3.position(gridSize*cellSize+10,cellSize * gridSize/2+120);
     inp3.size(100);
     inp3.input(myInputEvent3);
-    let inp4 = createInput(turnMax);
-    inp4.position(gridSize*cellSize+10,cellSize * gridSize/2+290);
-    inp4.size(100);
-    inp4.input(myInputEvent4);
     hp = hpMax;
-    turn = 0;
 }
 
 function myInputEvent() {
@@ -89,16 +82,6 @@ function myInputEvent3() {
     }
 }
 
-function myInputEvent4() {
-    inp = int(this.value());
-    if (!isNaN(inp)) {
-        turnMax = inp;
-        if (turn > turnMax) {
-            gameOver = true;
-        }
-    }
-}
-
 function newGame() {
     grid = new Array(gridSize * gridSize).fill('n');
     snake = [int(gridSize/2)*gridSize+3,int(gridSize/2)*gridSize+2,int(gridSize/2)*gridSize+1];
@@ -126,7 +109,6 @@ function drawScore() {
     text('Number of apples:',gridSize*cellSize+10,cellSize * gridSize/2-40);
     text('Speed:',gridSize*cellSize+10,cellSize * gridSize/2+10);
     text('Maximum HP:',gridSize*cellSize+10,cellSize * gridSize/2+60);
-    text('Maximum number of turns:',gridSize*cellSize+10,cellSize * gridSize/2+230);
 }
 
 function drawRect(txt,x,y,fillColor,size,textcolor) {
@@ -228,7 +210,6 @@ function draw() {
         drawScore();
         drawGrid();
         drawHp();
-        drawTurn();
         updateSnake();
     } else {
         drawGameOver()
@@ -274,12 +255,6 @@ function drawHp() {
     rect(gridSize*cellSize+13,gridSize*cellSize/2+136,rectLength,20)
     stroke(0);
     strokeWeight(2);
-}
-
-function drawTurn() {
-    fill(0, 220, 0);
-    textSize(15);
-    text(`Turn: ${turn}`,gridSize*cellSize+10,gridSize*cellSize/2+190);
 }
 
 function keyPressed() {

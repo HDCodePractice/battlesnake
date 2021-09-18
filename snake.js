@@ -54,8 +54,5 @@ function updateSnake(){
                 gameOver = true;
             }
         }
-        if (hp < 0) {
-            gameOver = true;
-        }
     }
 }
