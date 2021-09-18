@@ -89,12 +89,12 @@ function drawLables() {
     text("Apples:",width - selectWidth + 10, 70);
     text("MaxHP:",width - selectWidth + 10, 100);
     text("MaxTurn:",width - selectWidth + 10, 130);
+    text("HP:"+hp,width - selectWidth + 10, 160);
     textSize(15);
-    text("HP:"+hp,width - selectWidth + 15, 20);
-    text("Score:"+score,width - selectWidth + 70, 20);
-    text("Turn:"+turn,width - selectWidth + 130, 20);
+    text("Score:"+score,10, 20);
+    text("Turn:"+turn,50 + 130, 20);
     fill(255,0,0);
-    rect(width - selectWidth + 10, 160, 160 * hp/maxHp,10);
+    rect(width - selectWidth + 10, 170, 160 * hp/maxHp,10);
 }
 
 
