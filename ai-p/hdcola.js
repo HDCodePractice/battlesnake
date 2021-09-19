@@ -1,5 +1,5 @@
 function hdcola_getDirection(gridSize,snake,apples,direction){
-    console.log(gridSize*gridSize-1,snake[0],apples);
+    // console.log(gridSize*gridSize-1,snake[0],apples);
     if (direction == "l") {
         if (snake[0]%gridSize==0){
             return (snake[0] === 0)?"d":"u"

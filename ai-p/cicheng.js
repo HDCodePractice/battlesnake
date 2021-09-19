@@ -1,10 +1,3 @@
-
-function sleep(t) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, t);
-    });
-}
-
 function positionToDirection(start,end) {
     let [x1,y1] = start;
     let [x2,y2] = end;
@@ -33,14 +26,14 @@ var myApple;
    */
 function cicheng_getDirection(gridSize,snake,apples,direction){
     //检测最近的苹果
-
+    // console.log("aaaaaaaaaa");
     let x = snake[0]%gridSize;
     let y = Math.floor(snake[0]/gridSize);    
     let map =new Array(grid*grid).fill(0);
     let status = true;
     myApple = (snake[0] === apples[0])? apples[1] : apples[0];
     let end = [myApple%gridSize,Math.floor(myApple/gridSize)];
-    // console.log("目标:",end);
+    console.log("目标:",end);
     snake.forEach((s) => {
         map[s] = 1;
     })
