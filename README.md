@@ -32,10 +32,19 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
     }
 }
 
-ais['hdcola'] = hdcola_getDirection;
+function hdcola_newGame(){
+    return;
+}
+
+ais['hdcola'] = {
+    getDirection: hdcola_getDirection,
+    newGame: hdcola_newGame
+};
 ```
 
-脚本中需要有一个函数，名字为 `yourname_getDirection(gridSize,snake,apple,direction)`，转入的参数分别为：
+##### 书写获取下一步的方向函数
+
+脚本中一个名字为 `yourname_getDirection(gridSize,snake,apple,direction)`，转入的参数分别为：
 
 * gridSize: 为地图大小，地图为一个正方形，大小为 gridSize * gridSize
 * snake: 是一个数组，snake[0]为蛇头的坐标，这个坐标为 row * gridSize + col, 其中 row 为行号, col 为列号
@@ -43,7 +52,16 @@ ais['hdcola'] = hdcola_getDirection;
 * direction: 是一个字符串，表示蛇头的方向，可能的值为："l","d","r","u"，分表代表左、下、右、上
 * 这个函数应该返回一个字符串，表示接下来蛇头的方向，值的内容能见上面direction的说明
 
-脚本的最后，要有给 ais 字典加入你的名字，值为你的函数名。
+##### 书与新游戏初始化函数
+
+脚本中一个名字为 `yourname_NewGame()`，在这个函数里将你自己所使用的变量进行初始化，这个函数在每一次重新开始游戏时会被调用。
+
+##### 注册你的AI名称和调用的函数
+
+脚本的最后，要有给 ais 字典加入你的名字，并设置两个方法：
+
+* getDirection: 设置为你的获取方向的函数名，在示例中为 `hdcola_getDirection`
+* newGame: 设置为你的新游戏初始化函数名，在示例中为 `hdcola_newGame`
 
 #### 在html中加入自己的AI脚本
 
