@@ -9,7 +9,7 @@ function moreUpdate(){
         if (ai == ""){
             ai = 'hdcola';
         }
-        d = ais[ai](gridSize,snake,apples,direction);
+        d = ais[ai].getDirection(gridSize,snake,apples,direction);
         if (["r","l","u","d"].includes(d)){
             direction = d;
         }
@@ -26,6 +26,12 @@ function moreSettings(){
         selectAi.option(key);
     }
     selectAi.changed(aiSelectEvent);
+}
+
+function moreNewGame(){
+    if (ai != ""){
+        ais[ai].newGame();
+    }
 }
 
 function aiSelectEvent(){

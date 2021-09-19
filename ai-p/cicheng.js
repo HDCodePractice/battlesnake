@@ -21,6 +21,17 @@ let actionPath = [];
 let myApple;
 let cruise = false;
 let cruisePositon = 0;
+
+function cicheng_newGame(){
+    CheckFlag = true;
+    steps= [];
+    cruisePath = [];
+    actionPath = [];
+    myApple=0;
+    cruise = false;
+    cruisePositon = 0;
+}
+
 function buildCrusePath(gridSize) {
     let path = [];
     path.push("r")
@@ -203,5 +214,7 @@ function cicheng_getDirection(gridSize,snake,apples,direction){
         
 }
 
-
-ais['cicheng'] = cicheng_getDirection;
+ais['cicheng'] = {
+    getDirection: cicheng_getDirection,
+    newGame: cicheng_newGame
+};

@@ -56,6 +56,7 @@ function newGame(){
     score = 0;
     turn = 0;
     gameOver = false;
+    moreNewGame();
 }
 
 function settings() {
@@ -96,7 +97,6 @@ function drawLables() {
     fill(255,0,0);
     rect(width - selectWidth + 10, 170, 160 * hp/maxHp,10);
 }
-
 
 function inputmaxTurn(){
     val = this.value();

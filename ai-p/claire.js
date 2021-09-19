@@ -2,4 +2,11 @@ function claire_getDirection(gridSize,snake,apples,direction){
     return direction;
 }
 
-ais['claire'] = claire_getDirection;
+function claire_newGame(){
+    return;
+}
+
+ais['claire'] = {
+    getDirection: claire_getDirection,
+    newGame: claire_newGame
+};

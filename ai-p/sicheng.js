@@ -49,4 +49,11 @@ function sicheng_getDirection(gridSize,snake,apples,direction){
     }
 }
 
-ais['sicheng'] = sicheng_getDirection;
+function sicheng_newGame(){
+    return;
+}
+
+ais['sicheng'] = {
+    getDirection: sicheng_getDirection,
+    newGame: sicheng_newGame
+};

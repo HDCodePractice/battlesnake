@@ -27,4 +27,11 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
     }
 }
 
-ais['hdcola'] = hdcola_getDirection;
+function hdcola_newGame(){
+    return;
+}
+
+ais['hdcola'] = {
+    getDirection: hdcola_getDirection,
+    newGame: hdcola_newGame
+};
