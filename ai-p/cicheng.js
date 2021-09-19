@@ -112,10 +112,10 @@ function cicheng_getDirection(gridSize,snake,apples,direction){
         }
     }
     if(cruise) {
-            console.log("巡航模式!");
+            // console.log("巡航模式!");
             cruise = true;
             buildCrusePath(gridSize);
-            if(cruisePath.length >200) console.log(cruisePath);
+            // if(cruisePath.length >200) console.log(cruisePath);
             if(actionPath.length === 0) actionPath = cruisePath.slice();
             let newWay = actionPath.shift();
             // console.log(newWay);

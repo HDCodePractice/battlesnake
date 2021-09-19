@@ -1,5 +1,5 @@
 const cellSize = 20;
-const gridSize = 14;
+const gridSize = 15;
 const scoreHeight = 50;
 const selectWidth = 200;
 
