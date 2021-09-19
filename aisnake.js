@@ -7,7 +7,7 @@ function moreUpdate(){
     }
     if (!gameOver){
         if (ai == ""){
-            ai = 'cicheng';
+            ai = 'hdcola';
         }
         d = ais[ai](gridSize,snake,apples,direction);
         if (["r","l","u","d"].includes(d)){
@@ -30,6 +30,5 @@ function moreSettings(){
 
 function aiSelectEvent(){
     ai = selectAi.value();
-    // ai = aix["cicheng"];
     newGame();
 }
