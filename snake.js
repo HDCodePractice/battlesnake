@@ -13,3 +13,7 @@ function keyPressed() {
 function moreUpdate(){
 
 }
+
+function moreSettings(){
+    
+}

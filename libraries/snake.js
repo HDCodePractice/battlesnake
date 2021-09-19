@@ -79,6 +79,7 @@ function settings() {
     startButton.position(width - selectWidth + 50, height/2+195);
     startButton.size(selectWidth - 100,20);
     startButton.mousePressed(newGame);
+    moreSettings();
 }
 
 function drawLables() {
@@ -88,12 +89,12 @@ function drawLables() {
     text("Apples:",width - selectWidth + 10, 70);
     text("MaxHP:",width - selectWidth + 10, 100);
     text("MaxTurn:",width - selectWidth + 10, 130);
+    text("HP:"+hp,width - selectWidth + 10, 160);
     textSize(15);
-    text("HP:"+hp,width - selectWidth + 15, 20);
-    text("Score:"+score,width - selectWidth + 70, 20);
-    text("Turn:"+turn,width - selectWidth + 130, 20);
+    text("Score:"+score,10, 20);
+    text("Turn:"+turn,50 + 130, 20);
     fill(255,0,0);
-    rect(width - selectWidth + 10, 160, 160 * hp/maxHp,10);
+    rect(width - selectWidth + 10, 170, 160 * hp/maxHp,10);
 }
 
 
@@ -211,32 +212,30 @@ function draw() {
 
 function updateSnake(){
     if (!gameOver){
+        checkOnApple();
+        moreUpdate();
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
-            }else{
-                checkOnApple();
+            }else{                
                 snake.splice(0,0,snake[0]+1)
             }
         }else if (direction === "u"){
             if (snake[0] < gridSize){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]-gridSize);
             }
         }else if (direction === "d"){
             if (snake[0] >= gridSize * (gridSize-1)){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]+gridSize);
             }
         }else if (direction === "l"){
             if (snake[0] % gridSize === 0){
                 gameOver = true;
             }else{
-                checkOnApple();
                 snake.splice(0,0,snake[0]-1);
             }
         }
@@ -249,5 +248,4 @@ function updateSnake(){
             gameOver = true;
         }
     }
-    moreUpdate();
 }

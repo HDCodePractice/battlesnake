@@ -66,6 +66,7 @@ https://github.com/HDCodePractice/battlesnake/blob/eb9e4048a7cfd152aa09ea33b4af5
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 在VS Code中运行一个HTTP服务器，方便调试你的代码
 
 =========================================
+
 ENGLISH
 =========================================
 Snake game battle: we have currently written the single-playera and single AI play versions; multiplayer battle, human-machine battle and AI *VS* AI battle on their way!
@@ -89,7 +90,7 @@ Please add your own AI script file in the [ai-p](https://github.com/HDCodePracti
 This is a template code:
 
 ```
-function hdcola_getDirection(gridSize,snake,apple,direction){
+function hdcola_getDirection(gridSize,snake,apples,direction){
     if (direction == "l") {
         return "d";
     }else if (direction == "d") {
@@ -108,8 +109,8 @@ There needs to be a function in the script, the name is `yourname_getDirection(g
 
 * gridSize: the sides of the square map, the area of the map is gridSize * gridSize
 * snake: an array, snake[0] is the coordinates of the snake head, this coordinate is row * gridSize + col, where row is the row number and col is the column number
-* apple: is an int, representing the coordinates of the apple, which is calculated in the same way as the coordinates above
-* direction: is a string representing the direction of the snake head, possible values are: "l", "d", "r", "u", representing left, down, right, and up respectively
+* apple: an array, representing the coordinates of the apple, which is calculated in the same way as the coordinates above
+* direction: a string representing the direction of the snake head, possible values are: "l", "d", "r", "u", representing left, down, right, and up respectively
 * This function should return a string indicating the direction of the next snake head. The content of the value can be seen in the description of direction above ("l", "d", "r", "u")
 
 At the end of the script, you must add your function name to the ais dictionary.
@@ -127,5 +128,12 @@ https://github.com/HDCodePractice/battlesnake/blob/eb9e4048a7cfd152aa09ea33b4af5
 Just change the name of `sicheng` in `ais['sicheng']` to the one that you registered in your script.
 
 The automatic loading function will be added later, and the function interface will also undergo a little change, so please participate :)
+
+## Related Resources
+
+* [Our Telegram Channel](https://t.me/ChildPrograming) Here are the latest developments, welcome to discuss in the comments
+* [VS Code](https://code.visualstudio.com/) IDE for writing code
+* [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) Run an HTTP server in VS Code to facilitate debugging of your code
 =========================================
+
 作者/Written by: [hdcola](https://github.com/hdcola), [Sichengthebest](https://github.com/Sichengthebest)
