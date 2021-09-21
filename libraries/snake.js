@@ -214,9 +214,9 @@ function checkOnApple() {
 
 function updateSnake(){
     if (!gameOver){
-        checkOnApple();
-        
-        
+        if (direction != ""){
+            checkOnApple();
+        }
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
