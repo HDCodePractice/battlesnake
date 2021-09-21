@@ -159,19 +159,6 @@ function newApple() {
     return int(random(notsnake));
 }
 
-function checkOnApple() {
-    hp -= 1;
-    turn += 1;
-    if (apples.includes(snake[0])){
-        idx = apples.indexOf(snake[0]);
-        apples[idx] = newApple();
-        hp = maxHp;
-        score += 1;
-    } else {
-        snake.splice(snake.length-1, 1)
-    }
-}
-
 function drawGameOver() {
     fill(255,0,0);
     textSize(int(width/10));
@@ -210,10 +197,26 @@ function draw() {
     drawLables();
 }
 
+function checkOnApple() {
+    hp -= 1;
+    turn += 1;
+    if (apples.includes(snake[0])){
+        idx = apples.indexOf(snake[0]);
+        apples[idx] = newApple();
+        hp = maxHp;
+        score += 1;
+        moreUpdate();
+    } else {
+        moreUpdate();
+        snake.splice(snake.length-1, 1)
+    }
+}
+
 function updateSnake(){
     if (!gameOver){
         checkOnApple();
-        moreUpdate();
+        
+        
         if (direction === "r"){
             if (snake[0] % gridSize === gridSize - 1){
                 gameOver = true;
