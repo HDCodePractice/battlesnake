@@ -11,9 +11,13 @@ function keyPressed() {
 }
 
 function moreUpdate(){
-
+    return
 }
 
 function moreSettings(){
-    
+    return
+}
+
+function moreNewGame(){
+    return
 }
