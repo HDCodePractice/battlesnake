@@ -2,9 +2,6 @@ let ais = {};
 ai = "";
 
 function moreUpdate(){
-    if (direction == ""){
-        direction = "r"
-    }
     if (!gameOver){
         if (ai == ""){
             ai = 'hdcola';
@@ -32,6 +29,7 @@ function moreNewGame(){
     if (ai != ""){
         ais[ai].newGame();
     }
+    direction = "r"
 }
 
 function aiSelectEvent(){
