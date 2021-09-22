@@ -1,23 +1,50 @@
 function jaden_getDirection(gridSize,snake,apples,direction){
-    if (direction == "l") {
-        if (snake[0]%gridSize==0){
-            return "d";
-        }
-        return "l";
-    }else if (direction == "d") {
-        if (snake[0]%gridSize==0){
+    rows = []
+    cols = []
+    for (let appleIndex = 0; appleIndex < apples.length; appleIndex++) {
+        const apple = apples[appleIndex];
+        rows.push(int(apple/gridSize))
+        cols.push(apple%gridSize)
+    }
+    if (snake[0]%gridSize < cols[0]) {
+        if (direction != 'l' && !snake.includes(snake[0]+1)) {
             return "r";
+        } else {
+            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd') {
+                return "u";
+            } else if (direction != 'u') {
+                return "d";
+            }
         }
-        return "d";
-    }else if (direction == "r") {
-        if (snake[0]%gridSize==gridSize-1){
-            return "u";
-        }else{
-            return "r";
-        }
-    }else if (direction == "u") {
-        if (snake[0]%gridSize==gridSize-1){
+    } else if (snake[0]%gridSize > cols[0]) {
+        if (direction != 'r' && !snake.includes(snake[0]-1)) {
             return "l";
+        } else {
+            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd') {
+                return "u";
+            } else if (direction != 'u') {
+                return "d";
+            }
+        }
+    } else if (int(snake[0]/gridSize) > rows[0]) {
+        if (direction != 'd' && !snake.includes(snake[0]-gridSize)) {
+            return "u";
+        } else {
+            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r') {
+                return "l";
+            } else if (direction != 'l') {
+                return "r";
+            }
+        }
+    } else if (int(snake[0]/gridSize) < rows[0]) {
+        if (direction != 'u' && !snake.includes(snake[0]+gridSize)) {
+            return "d";
+        } else {
+            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r') {
+                return "l";
+            } else if (direction != 'l') {
+                return "r";
+            }
         }
     }
 }
