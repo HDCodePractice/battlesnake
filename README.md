@@ -12,6 +12,21 @@
 
 可以去 [单AI游戏](https://hdcodepractice.github.io/battlesnake/aisnake.html) 选择你想要运行的AI
 
+## AI竞技比赛规则
+
+### AI单人最高分比赛
+
+* 比赛分为三轮，每人每轮可以有两个AI参加比赛
+* 每轮比赛，每个AI运行3次，得出死亡前的Score、Turn，比赛结束后，去掉一个最高的Score和一个最低的Score成绩，成为最终结果
+* 获胜机制：分数最高者获胜，如果分数相同，则轮数最少者获胜。如果分数和轮数都相同，相同的AI则加赛至分出胜负为止。
+* 我们将会评比出单轮冠军和三轮总冠军AI
+* 三轮分别为：
+  * Apples: 1、MaxHP: 100、 MaxTurn: 0
+  * Apples: 5、MaxHP: 50、MaxTurn: 100
+  * Apples: 50、MaxHP: 20、MaxTurn: 200
+* 总冠军获胜规则：每轮比赛按名次来加分，最终以得分最少者为总冠军
+
+
 ### 如何加入自己的AI
 
 #### 建立自己的AI脚本
