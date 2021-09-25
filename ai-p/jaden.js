@@ -1,53 +1,59 @@
 function jaden_getDirection(gridSize,snake,apples,direction){
-    rows = []
-    cols = []
-    for (let appleIndex = 0; appleIndex < apples.length; appleIndex++) {
-        const apple = apples[appleIndex];
-        rows.push(int(apple/gridSize))
-        cols.push(apple%gridSize)
+// Variable Defining
+let head = indexToColRow(snake[0])
+let headidx = snake[0]
+let headrow = head[0]
+let headcol = head[1]
+
+let apple = indexToColRow(apples[0])
+let appleidx = apples[0]
+let applerow = apple[0]
+let applecol = apple[1]
+
+
+// Variable Print Debugging
+// print(`head: ${head}`)
+// print(`headidx: ${headidx}`)
+// print(`headcol: ${headcol}`)
+// print(`headrow: ${headrow}`)
+
+// print(`apple: ${apple}`)
+// print(`appleidx: ${appleidx}`)
+// print(`applecol: ${applecol}`)
+// print(`applerow: ${applerow}`)
+
+// Logic
+
+if (headrow > applerow){
+    if (direction !== "d"){
+        return("u")
+    }else{
+        return("r")
     }
-    if (snake[0]%gridSize < cols[0]) {
-        if (direction != 'l' && !snake.includes(snake[0]+1)) {
-            return "r";
-        } else {
-            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd') {
-                return "u";
-            } else if (direction != 'u') {
-                return "d";
-            }
+}else if (headrow < applerow){
+    if (direction !== "u"){
+        return("d")
+    }else{
+        return("r")
+    }
+}else if (headrow === applerow){
+    if (headcol > applecol){
+        if (direction !== "r"){
+            return("l")
+        }else{
+            return("u")
         }
-    } else if (snake[0]%gridSize > cols[0]) {
-        if (direction != 'r' && !snake.includes(snake[0]-1)) {
-            return "l";
-        } else {
-            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd') {
-                return "u";
-            } else if (direction != 'u') {
-                return "d";
-            }
-        }
-    } else if (int(snake[0]/gridSize) > rows[0]) {
-        if (direction != 'd' && !snake.includes(snake[0]-gridSize)) {
-            return "u";
-        } else {
-            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r') {
-                return "l";
-            } else if (direction != 'l') {
-                return "r";
-            }
-        }
-    } else if (int(snake[0]/gridSize) < rows[0]) {
-        if (direction != 'u' && !snake.includes(snake[0]+gridSize)) {
-            return "d";
-        } else {
-            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r') {
-                return "l";
-            } else if (direction != 'l') {
-                return "r";
-            }
+    }else{
+        if (direction !== "l"){
+            return("r")
+        }else{
+            return("u")
         }
     }
 }
+return "r"
+}
+
 
 function jaden_newGame(){
     return;
