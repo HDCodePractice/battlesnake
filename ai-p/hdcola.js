@@ -1,12 +1,3 @@
-// function noReturn(direction,nextDirection){
-//     if (direction === nextDirection) {
-//         return nextDirection;
-//     }
-//     if (direction === "u" && nextDirection === "d") {
-//         return "u";
-//     }
-// }
-
 function hdcola_getDirection(gridSize,snake,apples,direction){
     let apple = indexToColRow(apples[0]);
     let snakeHead = indexToColRow(snake[0]);
