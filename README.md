@@ -166,7 +166,9 @@ There needs to be a function in the script, the name is `yourname_getDirection(g
 * direction: a string representing the direction of the snake head, possible values are: "l", "d", "r", "u", representing left, down, right, and up respectively
 * This function should return a string indicating the direction of the next snake head. The content of the value can be seen in the description of direction above ("l", "d", "r", "u")
 
-At the end of the script, you must add your function name to the ais dictionary.
+At the end of the script, you must add your function name to the ais dictionary, with the following functions:
+* getDirection: Set the function name of your get direction, in the example it is hdcola_getDirection
+* newGame: Set to the name of your new game initialization function, in the example it is hdcola_newGame
 
 #### Add your own AI script in html
 
