@@ -1,29 +1,49 @@
+// function noReturn(direction,nextDirection){
+//     if (direction === nextDirection) {
+//         return nextDirection;
+//     }
+//     if (direction === "u" && nextDirection === "d") {
+//         return "u";
+//     }
+// }
+
 function hdcola_getDirection(gridSize,snake,apples,direction){
-    // console.log(gridSize*gridSize-1,snake[0],apples);
-    if (direction == "l") {
-        if (snake[0]%gridSize==0){
-            return (snake[0] === 0)?"d":"u"
-            // return "u";
-        }else{
-            return "l"
-        }
-    }else if (direction == "d") {
-        if ((snake[0]+1)%gridSize==0){            
-             return (snake[0]===gridSize*gridSize-1)?"l":"d";
-        }
-        // return "d";
-    }else if (direction == "r") {
-        if (snake[0]%gridSize==gridSize-1){
-            return (snake[0]>=gridSize*gridSize-1)?"u":"d";
-        }else{
-            return "r";
-        }
-    }else if (direction == "u") {
-        if (snake[0]%gridSize==gridSize-1){
+    let apple = indexToColRow(apples[0]);
+    let snakeHead = indexToColRow(snake[0]);
+    if (apple[0] < snakeHead[0]){
+        if ( snake.includes( snake[0] - gridSize) ){
+            if (direction === "r"){
+                return "r";
+            }
             return "l";
-        }else {
-            return "r";
         }
+        return 'u';
+    }else if (apple[0] > snakeHead[0]){
+        if ( snake.includes( snake[0] + gridSize) ){
+            if (direction === "r"){
+                return "r";
+            }
+            return "l";
+        }
+        return 'd';
+    }else if (apple[1] < snakeHead[1]){
+        if ( snake.includes( snake[0] - 1) ){
+            if (direction === "d"){
+                return "d";
+            }
+            return "u";
+        }
+        return 'l';
+    }else if (apple[1] > snakeHead[1]){
+        if ( snake.includes( snake[0] + 1) ){
+            if (direction === "d"){
+                return "d";
+            }
+            return "u";
+        }
+        return 'r';
+    }else{
+        return direction;
     }
 }
 
