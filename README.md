@@ -114,6 +114,20 @@ You can go to [play alone](https://hdcodepractice.github.io/battlesnake/snake.ht
 
 You can go [here](https://hdcodepractice.github.io/battlesnake/aisnake.html) to code the AI you want to run.
 
+## AI competition rules
+
+### Single AI highest-score competition
+
+* The competition is divided into three rounds, and each round can have two AIs per person to participate in the competition.
+* In each round of the game, each AI runs 3 times to get the Score and Turn before death. After the game, the highest Score and the lowest Score are removed, with the middle one becoming the final result.
+* How to win: the player with the highest Score wins. If the Score is the same, the player with the least number of Turns wins. If the Score and the number of Turns are the same, the tied AI will play an extra match until the winner is determined.
+* We will have single-round champions and a three-round champion AI.
+* The three rounds are:
+   * Apples: 1, MaxHP: 100, MaxTurn: 0
+   * Apples: 5, MaxHP: 50, MaxTurn: 100
+   * Apples: 50, MaxHP: 20, MaxTurn: 200
+* The rules for winning the championship: points will be added according to the ranking in each round (first gets 1 point, second gets 2 points, etc.), and the winner will be the one with the least points in the end.
+
 ### How to make your own AI
 
 #### Build your own AI script
@@ -135,7 +149,13 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
     }
 }
 
-ais['hdcola'] = hdcola_getDirection;
+function hdcola_newGame(){
+    return;
+}
+ais['hdcola'] = {
+    getDirection: hdcola_getDirection,
+    newGame: hdcola_newGame
+};
 ```
 
 There needs to be a function in the script, the name is `yourname_getDirection(gridSize,snake,apple,direction)`, the transferred parameters are:
