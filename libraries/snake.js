@@ -9,7 +9,7 @@ let direction = "r";  // l, r, u, d
 let score;
 let apples = [];
 let gameOver = false;
-let speed = 10;
+let speed = 100;
 let appleCount = 3;
 let maxHp = 100;
 let hp = 0;

@@ -6,6 +6,13 @@ function colRowToIndex(col, row) {
     return row * gridSize + col;
 }
 
+function predict_next_move(direction,head){
+    print("Direction:",direction)
+    print("Current Head:",head)
+    let nexthead = head+1
+    print("Next Head:",nexthead)
+}
+
 function parker_getDirection(gridSize,snake,apples,direction){   
     // Variable Defining
     let head = indexToColRow(snake[0])
@@ -32,33 +39,38 @@ function parker_getDirection(gridSize,snake,apples,direction){
 
     // Logic
 
+
+    // Find apple and don't hit neck
+    predict_next_move(direction, headidx)
     if (headrow > applerow){
         if (direction !== "d"){
-            return("u")
+            return "u"
         }else{
-            return("r")
+            return "r"
         }
     }else if (headrow < applerow){
         if (direction !== "u"){
-            return("d")
+            return "d"
         }else{
-            return("r")
+            return "r"
         }
     }else if (headrow === applerow){
         if (headcol > applecol){
             if (direction !== "r"){
-                return("l")
+                return "l"
             }else{
-                return("u")
+                return "u"
             }
         }else{
             if (direction !== "l"){
-                return("r")
+                return "r"
             }else{
-                return("u")
+                return "u"
             }
         }
     }
+
+    // Don't hit body
     return "r"
 }
 
