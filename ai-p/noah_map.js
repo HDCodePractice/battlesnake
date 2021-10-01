@@ -55,6 +55,7 @@ function noah_getDirection(gridSize,snake,apples,direction){
 }
 
 function noah_newGame(){
+    direction = "u"
     isOnTop = false;
     twirlMode = false;
     twirl = 0
