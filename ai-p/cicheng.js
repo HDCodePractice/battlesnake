@@ -4,8 +4,8 @@ function cicheng_newGame(){
     j = -1
 }
 
-function cicheng_getDirection(gridSize,snake,apple,direction){
-    if(apple==210){
+function cicheng_getDirection(gridSize,snake,apples,direction){
+    if(apples.includes(210)){
         map = ["u","l","l","l","u","u","u","u","u","u",
                 "r","r","r","r","r","r","r","r","r","r","r","r","r","r",
                 "d","l","l","l","l","l","l","l","l","l","l","l","l","l",
