@@ -6,20 +6,67 @@ function colRowToIndex(col, row) {
     return row * gridSize + col;
 }
 
-function predict_next_move(direction,head){
+function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function predict_next_move(direction,head,gridSize){
+    let nexthead
     print("Direction:",direction)
     print("Current Head:",head)
-    let nexthead = head+1
+    if(direction === "r"){
+        nexthead = head+1
+    }else if(direction === "l"){
+        nexthead = head-1
+    }else if(direction === "u"){
+        nexthead = head-gridSize
+    }else if(direction === "d"){
+        nexthead = head+gridSize
+    }
     print("Next Head:",nexthead)
+    return(nexthead)
+}
+
+function move(darray, snake, cdirection, gridSize, head){
+    if (containsObject(predict_next_move(cdirection,head,darray[0],gridSize ),snake)){
+        print("First choice not work")
+        if (containsObject(predict_next_move(cdirection,head,darray[1],gridSize),snake)){
+            print("Second choice not work")
+            return darray[2]
+        }else{
+            return darray[1]
+        }
+    }else{
+        return darray[0]
+    }
 }
 
 function parker_getDirection(gridSize,snake,apples,direction){   
     // Variable Defining
     let head = indexToColRow(snake[0])
     let headidx = snake[0]
-    let headrow = head[0]
+    let headrow = head[0] 
     let headcol = head[1]
 
+    
+    let apples2 = []
+
+    for (var i = 0; i < apples.length; i++) {
+        apples2.push(indexToColRow(apples[i]))
+    }
+    
+    print("apples2")
+    print(apples2)
+    print("head")
+    print(head)
+    
     let apple = indexToColRow(apples[0])
     let appleidx = apples[0]
     let applerow = apple[0]
@@ -41,7 +88,34 @@ function parker_getDirection(gridSize,snake,apples,direction){
 
 
     // Find apple and don't hit neck
-    predict_next_move(direction, headidx)
+    // if (headrow > applerow){
+    //     if (direction !== "d"){
+    //         return move(["u","l","l"],snake,direction,gridSize,headidx)
+    //     }else{
+    //         return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //     }
+    // }else if (headrow < applerow){
+    //     if (direction !== "u"){
+    //         return move(["d","l","r"],snake,direction,gridSize,headidx)
+    //     }else{
+    //         return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //     }
+    // }else if (headrow === applerow){
+    //     if (headcol > applecol){
+    //         if (direction !== "r"){
+    //             return move(["l","u","d"],snake,direction,gridSize,headidx)
+    //         }else{
+    //             return move(["u","l","r"],snake,direction,gridSize,headidx)
+    //         }
+    //     }else{
+    //         if (direction !== "l"){
+    //             return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //         }else{
+    //             return move(["u","l","r"],snake,direction,gridSize,headidx)
+    //         }
+    //     }
+    // }
+    
     if (headrow > applerow){
         if (direction !== "d"){
             return "u"
@@ -71,7 +145,10 @@ function parker_getDirection(gridSize,snake,apples,direction){
     }
 
     // Don't hit body
-    return "r"
+    let nexthead = predict_next_move(direction, headidx,gridSize)
+    if (containsObject(nexthead, snake)){
+
+    }
 }
 
 function parker_newGame(){
