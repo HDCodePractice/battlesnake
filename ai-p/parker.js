@@ -24,7 +24,7 @@ function predict_next_move(direction,head,gridSize){
     if(direction === "r"){
         nexthead = head+1
     }else if(direction === "l"){
-         nexthead = head-1
+        nexthead = head-1
     }else if(direction === "u"){
         nexthead = head-gridSize
     }else if(direction === "d"){
@@ -88,30 +88,58 @@ function parker_getDirection(gridSize,snake,apples,direction){
 
 
     // Find apple and don't hit neck
+    // if (headrow > applerow){
+    //     if (direction !== "d"){
+    //         return move(["u","l","l"],snake,direction,gridSize,headidx)
+    //     }else{
+    //         return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //     }
+    // }else if (headrow < applerow){
+    //     if (direction !== "u"){
+    //         return move(["d","l","r"],snake,direction,gridSize,headidx)
+    //     }else{
+    //         return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //     }
+    // }else if (headrow === applerow){
+    //     if (headcol > applecol){
+    //         if (direction !== "r"){
+    //             return move(["l","u","d"],snake,direction,gridSize,headidx)
+    //         }else{
+    //             return move(["u","l","r"],snake,direction,gridSize,headidx)
+    //         }
+    //     }else{
+    //         if (direction !== "l"){
+    //             return move(["r","u","d"],snake,direction,gridSize,headidx)
+    //         }else{
+    //             return move(["u","l","r"],snake,direction,gridSize,headidx)
+    //         }
+    //     }
+    // }
+    
     if (headrow > applerow){
         if (direction !== "d"){
-            return move(["u","l","l"],snake,direction,gridSize,headidx)
+            return "u"
         }else{
-            return move(["r","u","d"],snake,direction,gridSize,headidx)
+            return "r"
         }
     }else if (headrow < applerow){
         if (direction !== "u"){
-            return move(["d","l","r"],snake,direction,gridSize,headidx)
+            return "d"
         }else{
-            return move(["r","u","d"],snake,direction,gridSize,headidx)
+            return "r"
         }
     }else if (headrow === applerow){
         if (headcol > applecol){
             if (direction !== "r"){
-                return move(["l","u","d"],snake,direction,gridSize,headidx)
+                return "l"
             }else{
-                return move(["u","l","r"],snake,direction,gridSize,headidx)
+                return "u"
             }
         }else{
             if (direction !== "l"){
-                return move(["r","u","d"],snake,direction,gridSize,headidx)
+                return "r"
             }else{
-                return move(["u","l","r"],snake,direction,gridSize,headidx)
+                return "u"
             }
         }
     }
