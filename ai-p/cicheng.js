@@ -1,8 +1,8 @@
-let end = []
-let start = []
-let head = []
-let find = 0
-let path = []
+// let end = []
+// let start = []
+// let head = []
+// let find = 0
+// let path = []
 // let storeTable = []
 
 function cicheng_getDirection(gridSize,snake,apples,direction){
@@ -19,6 +19,10 @@ function cicheng_getDirection(gridSize,snake,apples,direction){
 }
 
 function cicheng_newGame() {
+  end = []
+  head = []
+  find = 0
+  path = []
   start = [4,8]
   game()
 }

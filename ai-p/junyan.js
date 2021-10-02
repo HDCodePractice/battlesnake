@@ -1,7 +1,7 @@
-let needFindPath = true;
-let path = [];
-let cruise = false;
-let actionPath = [];
+// let needFindPath = true;
+// let path = [];
+// let cruise = false;
+// let actionPath = [];
 function Junyan_getDirection(gridSize,snake,apples,direction){
 
     
