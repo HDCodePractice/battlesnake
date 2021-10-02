@@ -12,6 +12,21 @@
 
 可以去 [单AI游戏](https://hdcodepractice.github.io/battlesnake/aisnake.html) 选择你想要运行的AI
 
+## AI竞技比赛规则
+
+### AI单人最高分比赛
+
+* 比赛分为三轮，每人每轮可以有两个AI参加比赛
+* 每轮比赛，每个AI运行3次，得出死亡前的Score、Turn，比赛结束后，去掉一个最高的Score和一个最低的Score成绩，成为最终结果
+* 获胜机制：分数最高者获胜，如果分数相同，则轮数最少者获胜。如果分数和轮数都相同，相同的AI则加赛至分出胜负为止。
+* 我们将会评比出单轮冠军和三轮总冠军AI
+* 三轮分别为：
+  * Apples: 1、MaxHP: 100、 MaxTurn: 0
+  * Apples: 5、MaxHP: 50、MaxTurn: 100
+  * Apples: 50、MaxHP: 20、MaxTurn: 200
+* 总冠军获胜规则：每轮比赛按名次来加分，最终以得分最少者为总冠军
+
+
 ### 如何加入自己的AI
 
 #### 建立自己的AI脚本
@@ -99,6 +114,20 @@ You can go to [play alone](https://hdcodepractice.github.io/battlesnake/snake.ht
 
 You can go [here](https://hdcodepractice.github.io/battlesnake/aisnake.html) to code the AI you want to run.
 
+## AI competition rules
+
+### Single AI highest-score competition
+
+* The competition is divided into three rounds, and each round can have two AIs per person to participate in the competition.
+* In each round of the game, each AI runs 3 times to get the Score and Turn before death. After the game, the highest Score and the lowest Score are removed, with the middle one becoming the final result.
+* How to win: the player with the highest Score wins. If the Score is the same, the player with the least number of Turns wins. If the Score and the number of Turns are the same, the tied AI will play an extra match until the winner is determined.
+* We will have single-round champions and a three-round champion AI.
+* The three rounds are:
+   * Apples: 1, MaxHP: 100, MaxTurn: 0
+   * Apples: 5, MaxHP: 50, MaxTurn: 100
+   * Apples: 50, MaxHP: 20, MaxTurn: 200
+* The rules for winning the championship: points will be added according to the ranking in each round (first gets 1 point, second gets 2 points, etc.), and the winner will be the one with the least points in the end.
+
 ### How to make your own AI
 
 #### Build your own AI script
@@ -120,7 +149,13 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
     }
 }
 
-ais['hdcola'] = hdcola_getDirection;
+function hdcola_newGame(){
+    return;
+}
+ais['hdcola'] = {
+    getDirection: hdcola_getDirection,
+    newGame: hdcola_newGame
+};
 ```
 
 There needs to be a function in the script, the name is `yourname_getDirection(gridSize,snake,apple,direction)`, the transferred parameters are:
@@ -131,7 +166,9 @@ There needs to be a function in the script, the name is `yourname_getDirection(g
 * direction: a string representing the direction of the snake head, possible values are: "l", "d", "r", "u", representing left, down, right, and up respectively
 * This function should return a string indicating the direction of the next snake head. The content of the value can be seen in the description of direction above ("l", "d", "r", "u")
 
-At the end of the script, you must add your function name to the ais dictionary.
+At the end of the script, you must add your function name to the ais dictionary, with the following functions:
+* getDirection: Set the function name of your get direction, in the example it is hdcola_getDirection
+* newGame: Set to the name of your new game initialization function, in the example it is hdcola_newGame
 
 #### Add your own AI script in html
 
