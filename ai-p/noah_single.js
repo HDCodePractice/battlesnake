@@ -1,145 +1,8 @@
-// function sort_by_range(starting_point,array,gridSize) {
-//     var smallest = 69696969
-//     for (i in array) {
-//         if (((getRowCol(starting_point,gridSize)[0] - getRowCol(array[i],gridSize)[0]) + (getRowCol(starting_point,gridSize)[1] - getRowCol(array[i],gridSize)[1])) < smallest) {
-//             smallest = i
-//         } 
-//     }
-
-//     return array[getRowCol(smallest,gridSize)[0],getRowCol(smallest,gridSize)[1]]
-// }
-
-// function getRowCol(idx,gridSize) {
-//     let row = int(idx/gridSize)
-//     let col = idx % gridSize
-//     return [row,col]
-// }
-
-// function indexToColRow(index) {
-//     return [ int(index / gridSize) , index % gridSize];
-// }
-
-// function colRowToIndex(col, row) {
-//     return row * gridSize + col;
-// }
-
-// function predict_next_move(direction,head){
-//     print("Direction:",direction)
-//     print("Current Head:",head)
-//     let nexthead = head+1
-//     print("Next Head:",nexthead)
-// }
-
-// function unoah_getDirection(gridSize,snake,apples,direction){
-//     // let snakex = getRowCol(snake[0],gridSize)[0]
-//     // let snakey = getRowCol(snake[0],gridSize)[1]
-//     // let applex = sort_by_range(snake[0],apples,gridSize)[0]
-//     // let appley = sort_by_range(snake[0],apples,gridSize)[1]
-//     // if (applex < snakex) {
-//     //     return "l"
-//     // } 
-//     // if (snakex < applex) {
-//     //     return "r"
-//     // }
-//     // if (snakey < appley) {
-//     //     return "d"
-//     // } 
-//     // if (appley < snakey) {
-//     //     return "u"
-//     // }
-
-//     // if (direction == "l") { 
-//     //     return "l"
-//     // }else if (direction == "d") {
-//     //     return "d"
-//     // }else if (direction == "r") {
-//     //     return "r"
-//     // }else if (direction == "u") {
-//     //     return "u"
-//     // }
-//     let head = indexToColRow(snake[0])
-//     let headidx = snake[0]
-//     let headrow = head[0]
-//     let headcol = head[1]
-
-//     let apple = [sort_by_range(snake[0],apples,gridSize)[0],sort_by_range(snake[0],apples,gridSize)[1]]
-//     let appleidx = colRowToIndex(sort_by_range(snake[0],apples,gridSize)[0],sort_by_range(snake[0],apples,gridSize)[1])
-//     let applerow = sort_by_range(snake[0],apples,gridSize)[0]
-//     let applecol = sort_by_range(snake[0],apples,gridSize)[1]
-    
-
-//     // Variable Print Debugging
-//     // print(`head: ${head}`)
-//     // print(`headidx: ${headidx}`)
-//     // print(`headcol: ${headcol}`)
-//     // print(`headrow: ${headrow}`)
-
-//     // print(`apple: ${apple}`)
-//     // print(`appleidx: ${appleidx}`)
-//     // print(`applecol: ${applecol}`)
-//     // print(`applerow: ${applerow}`)
-
-//     // Logic
-
-
-//     // Find apple and don't hit neck
-//     predict_next_move(direction, headidx)
-//     if (headrow > applerow){
-//         if (direction !== "d"){
-//             return "u"
-//         }else{
-//             return "r"
-//         }
-//     }else if (headrow < applerow){
-//         if (direction !== "u"){
-//             return "d"
-//         }else{
-//             return "r"
-//         }
-//     }else if (headrow === applerow){
-//         if (headcol > applecol){
-//             if (direction !== "r"){
-//                 return "l"
-//             }else{
-//                 return "u"
-//             }
-//         }else{
-//             if (direction !== "l"){
-//                 return "r"
-//             }else{
-//                 return "u"
-//             }
-//         }
-//     }
-
-//     // Don't hit body
-//     return "r"
-// }
-
-// function unoah_newGame(){
-//     return;
-// }
-
-// ais['Unoah'] = {
-//     getDirection: unoah_getDirection,
-//     newGame: unoah_newGame
-// };
-
-
 function noah_indexToColRow(index) {
     return [int(index/gridSize), index%gridSize];
 }
 
-let lastapple = [0,0]
-let resetMode = false;
-let mapMode = false;
-
-// function colRowToIndex(col, row) {
-//     return row * gridSize + col;
-// }
-
 function noah1_getDirection(gridSize,snake,apples,direction){   
-    // Variable Defining
     let head = noah_indexToColRow(snake[0])
     let headidx = snake[0]
     let headrow = head[0]
@@ -149,61 +12,253 @@ function noah1_getDirection(gridSize,snake,apples,direction){
     let appleidx = apples[0]
     let applerow = apple[0]
     let applecol = apple[1]
-    
 
-    // Variable Print Debugging
-    // print(`head: ${head}`)
-    // print(`headidx: ${headidx}`)
-    // print(`headcol: ${headcol}`)
-    // print(`headrow: ${headrow}`)
-
-    // print(`apple: ${apple}`)
-    // print(`appleidx: ${appleidx}`)
-    // print(`applecol: ${applecol}`)
-    // print(`applerow: ${applerow}`)
-
-    // Logic
-    print(lastapple)
-    if (lastapple == apple) {
-        if (headrow > applerow){
-            if (direction !== "d"){
-                return "u"
-            }else{
-                return("r")
-            }
-        }else if (headrow < applerow){
-            if (direction !== "u"){
-                return "d"
-            }else{
-                return("r")
-            }
-        }else if (headrow === applerow){
-                if (headcol > applecol){
-                    if (direction !== "r"){
-                        return "l"
-                    }else{
-                        return("u")
-                    }
-                }else{
-                    if (direction !== "l"){
-                        return "r"
-                    }else{
-                        return("u")
-                    }
-                }
-            
-        }
+    if (headcol === 0  || headcol === gridSize - 1) {
         return "r"
-    } else {
+    } 
+    if (headrow === 0 || headrow === gridSize - 1) {
         return "u"
     }
-            
+
+    if (headcol == applecol){
+        if (checkCol(headcol,headrow,applerow) != false) {
+            if (headrow < checkCol(headcol,headrow,applerow)) {
+                if (direction != "u") {
+                    return "d";
+                }
+            } else if (headrow > checkCol(headcol,headrow,applerow)) {
+                if (direction != "d") {
+                    return "u";
+                }   
+            }
+        } 
+        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
+        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "r";
+        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "l";
+        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "d";
+        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "u";
+        //     }
+        // }
+    } else if (headrow == applerow) {
+        // 两列之间是空的
+        if (checkRow(headrow,headcol,applecol) != false) {
+            if (headcol < checkRow(headrow,headcol,applecol)) {
+                if (direction != "l") {
+                    return "r";
+                }   
+            } else if (headcol > checkRow(headrow,headcol,applecol)) {
+                if (direction != "r") {
+                    return "l";
+                }
+            }
+        } 
+        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
+        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "r";
+        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "l";
+        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "d";
+        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "u";
+        //     }
+        // }
+    } else {
+        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
+        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "r";
+        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
+        //         return "l";
+        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "d";
+        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
+        //         return "u";
+        //     }
+        // }
+       
+        if (checkOneTurn(headcol,headrow,applecol,applerow) != false) {
+            if (checkOneTurn(headcol,headrow,applecol,applerow)[0] == applecol) {
+                if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+                    if (direction != "u") {
+                        return "d";
+                    }
+                } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+                    if (direction != "d") {
+                        return "u"
+                    }
+                } else if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+                    if (direction != "l") {
+                        return "r"
+                    }
+                } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+                    if (direction != "r") {
+                        return "l"
+                    }
+                }
+            } else {
+                if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+                    if (direction != "u") {
+                        return "d";
+                    }
+                } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+                    if (direction != "d") {
+                        return "u"
+                    }
+                } else if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+                    if (direction != "l") {
+                        return "r"
+                    }
+                } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+                    if (direction != "r") {
+                        return "l"
+                    }
+                }
+            }
+        }
+             
+        // } else {
+        //     if (checkOneTurn(applecol,applerow,headcol,headrow) != false) {
+        //         if (checkOneTurn(headcol,headrow,applecol,applerow)[0] == applecol) {
+        //             if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+        //                 return "d";
+        //             } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+        //                 return "u"
+        //             } else if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+        //                 return "r"
+        //             } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+        //                 return "l"
+        //             }
+        //         } else {
+        //             if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+        //                 return "d";
+        //             } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
+        //                 return "u"
+        //             } else if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+        //                 return "r"
+        //             } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
+        //                 return "l"
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}
+
+
+
+function checkNull(col,row){
+    const idx = row * gridSize + col;
+    if (!snake.includes(idx)){
+        return true
+    }
+    return false
+}
+
+function checkCol(col,srow,erow){
+    print("检查列",col,srow,erow);
+    if (srow > erow){
+        const temp = srow;
+        srow = erow;
+        erow = temp;
+    }
+    for (let index = srow + 1; index < erow; index++) {
+        if (checkNull(col,index)===false){
+            print("检查",col,index,"不行");
+            return false
+        }
+    }
+    return erow    
+}
+
+function checkRow(row,scol,ecol){
+    print("检查行",row,scol,ecol);
+    if (scol > ecol){
+        const temp = scol;
+        scol = ecol;
+        ecol = temp;
+    }
+    for (let index = scol + 1; index < ecol; index++) {
+        if (checkNull(index,row)===false){
+            print("检查",index,row,"不行");
+            return false
+        }
+    }
+    return ecol    
+}
+
+function checkOneTurn(acol,arow,bcol,brow) {
+    if ( checkRow(arow,acol,bcol) ){
+        if (checkCol(bcol,arow,brow) ){
+            if (checkNull(bcol,arow)){
+                return [brow,bcol]
+            }
+        }
+    }
+    if ( checkCol(acol,arow,brow) ){
+        if (checkRow(brow,acol,bcol) ){
+            if (checkNull(acol,brow)){
+                return [bcol,brow]
+            }
+        }
+    }
+    
+    return false;
+}
+
+
+function checkTwoTurn(acol,arow,bcol,brow){
+    if (acol > bcol) {
+        const temp = acol;
+        acol = bcol
+        bcol = temp
+    }
+    if (arow > brow) {
+        const temp = arow;
+        arow = brow
+        brow = temp
+    }
+    for (let i = 0; i < gridSize; i++) {
+        if (i != acol && i != bcol) {
+            if (checkCol(i,(i-arow),brow)) {
+                if (checkRow(brow,i,bcol)) { 
+                    if (checkCol(i,arow,brow)) {
+                        if (checkNull(i,arow)) {
+                            if (checkNull(i,brow)) {
+                                return [i,brow]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (let i = 0; i < gridSize; i++) {
+        if (i != arow && i != brow) {
+            if (checkRow(i,(i-acol),brow)) {
+                if (checkCol(bcol,i,brow)) {
+                    if (checkRow(i,arow,brow)) {
+                        if (checkNull(i,acol)) {
+                            if (checkNull(i,bcol)) {
+                                return [bcol,i]
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    }
+    return false
 }
 
 function noah1_newGame(){
     lastapple = noah_indexToColRow(apples[0])
     resetMode = false;
     mapMode = false;
+    
     return;
 }
 
