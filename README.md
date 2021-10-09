@@ -191,4 +191,4 @@ The automatic loading function will be added later, and the function interface w
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) Run an HTTP server in VS Code to facilitate debugging of your code
 =========================================
 
-作者/Written by: [hdcola](https://github.com/hdcola), [Sichengthebest](https://github.com/Sichengthebest)
+作者/Written by: [hdcola](https://github.com/hdcola), [Sichengthebest](https://github.com/Sichengthebest), [ParkerXChen](https://github.com/ParkerXChen)
