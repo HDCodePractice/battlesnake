@@ -1,10 +1,16 @@
 let ais = {};
 ai = "";
 
+
 function moreUpdate(){
     if (!gameOver){
         if (ai == ""){
-            ai = 'hdcola';
+            if(getItem("ai") === null){
+                ai = 'hdcola';
+            }else{
+                ai = getItem("ai")
+            }
+            selectAi.selected(ai)
         }
         d = ais[ai].getDirection(gridSize,snake,apples,direction);
         if (["r","l","u","d"].includes(d)){
@@ -17,7 +23,7 @@ function moreUpdate(){
 }
 
 function moreSettings(){
-    selectAi = createSelect();
+    selectAi = createSelect(ai);
     selectAi.position(width - selectWidth + 50, height/2+165);
     for(var key in ais){
         selectAi.option(key);
@@ -29,10 +35,15 @@ function moreNewGame(){
     if (ai != ""){
         ais[ai].newGame();
     }
-    direction = "r"
+    direction = "r";
+}
+
+function moreSetup(){
 }
 
 function aiSelectEvent(){
     ai = selectAi.value();
+    storeItem("ai",ai);
+    print(getItem("ai"))
     newGame();
 }
