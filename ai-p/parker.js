@@ -19,8 +19,6 @@ function containsObject(obj, list) {
 
 function predict_next_move(direction,head,gridSize){
     let nexthead
-    print("Direction:",direction)
-    print("Current Head:",head)
     if(direction === "r"){
         nexthead = head+1
     }else if(direction === "l"){
@@ -30,15 +28,12 @@ function predict_next_move(direction,head,gridSize){
     }else if(direction === "d"){
         nexthead = head+gridSize
     }
-    print("Next Head:",nexthead)
     return(nexthead)
 }
 
 function move(darray, snake, cdirection, gridSize, head){
     if (containsObject(predict_next_move(cdirection,head,darray[0],gridSize ),snake)){
-        print("First choice not work")
         if (containsObject(predict_next_move(cdirection,head,darray[1],gridSize),snake)){
-            print("Second choice not work")
             return darray[2]
         }else{
             return darray[1]
@@ -61,11 +56,6 @@ function parker_getDirection(gridSize,snake,apples,direction){
     for (var i = 0; i < apples.length; i++) {
         apples2.push(indexToColRow(apples[i]))
     }
-    
-    print("apples2")
-    print(apples2)
-    print("head")
-    print(head)
     
     let apple = indexToColRow(apples[0])
     let appleidx = apples[0]
@@ -115,7 +105,6 @@ function parker_getDirection(gridSize,snake,apples,direction){
     //         }
     //     }
     // }
-    
     if (headrow > applerow){
         if (direction !== "d"){
             return "u"

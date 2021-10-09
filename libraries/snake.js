@@ -146,6 +146,7 @@ function setup() {
     newGame();
     settings();
     frameRate(speed);
+    moreSetup();
 }
 
 
