@@ -6,7 +6,7 @@ let num = 0;
 let dapples;
 
 
-function noah_indexToColRow(index) {
+function parker2_indexToColRow(index) {
     return [int(index/gridSize), index%gridSize];
 }
 
@@ -22,14 +22,14 @@ function get_apples_in_row(row,array,gridSize) {
     return num;
 }
 
-function noah_getDirection(gridSize,snake,apples,direction){
+function parker2_getDirection(gridSize,snake,apples,direction){
     
-    let head = noah_indexToColRow(snake[0])
+    let head = parker2_indexToColRow(snake[0])
     let headidx = snake[0]
     let headrow = head[0]
     let headcol = head[1]
 
-    let apple = noah_indexToColRow(apples[0])
+    let apple = parker2_indexToColRow(apples[0])
     let appleidx = apples[0]
     let applerow = apple[0]
     let applecol = apple[1]
@@ -98,7 +98,7 @@ function noah_getDirection(gridSize,snake,apples,direction){
         
 }
 
-function noah_newGame(){
+function parker2_newGame(){
     dapples = apples
     direction = "r"
     isOnTop = false;
@@ -109,7 +109,8 @@ function noah_newGame(){
     return;
 }
 
-ais['noah'] = {
-    getDirection: noah_getDirection,
-    newGame: noah_newGame
+ais['onion'] = {
+    getDirection: parker2_getDirection,
+    newGame: parker2_newGame
 };
+
