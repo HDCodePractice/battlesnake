@@ -13,13 +13,6 @@ function noah1_getDirection(gridSize,snake,apples,direction){
     let applerow = apple[0]
     let applecol = apple[1]
 
-    if (headcol === 0  || headcol === gridSize - 1) {
-        return "r"
-    } 
-    if (headrow === 0 || headrow === gridSize - 1) {
-        return "u"
-    }
-
     if (headcol == applecol){
         if (checkCol(headcol,headrow,applerow) != false) {
             if (headrow < checkCol(headcol,headrow,applerow)) {
@@ -32,17 +25,6 @@ function noah1_getDirection(gridSize,snake,apples,direction){
                 }   
             }
         } 
-        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
-        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "r";
-        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "l";
-        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "d";
-        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "u";
-        //     }
-        // }
     } else if (headrow == applerow) {
         // 两列之间是空的
         if (checkRow(headrow,headcol,applecol) != false) {
@@ -56,30 +38,7 @@ function noah1_getDirection(gridSize,snake,apples,direction){
                 }
             }
         } 
-        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
-        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "r";
-        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "l";
-        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "d";
-        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "u";
-        //     }
-        // }
     } else {
-        // if (checkTwoTurn(headcol,headrow,applecol,applerow) != false) {
-        //     if (headcol < checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "r";
-        //     } else if (headcol > checkTwoTurn(headcol,headrow,applecol,applerow)[0]) {
-        //         return "l";
-        //     } else if (headrow < checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "d";
-        //     } else if (headrow > checkTwoTurn(headcol,headrow,applecol,applerow)[1]) {
-        //         return "u";
-        //     }
-        // }
-       
         if (checkOneTurn(headcol,headrow,applecol,applerow) != false) {
             if (checkOneTurn(headcol,headrow,applecol,applerow)[0] == applecol) {
                 if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
@@ -118,33 +77,25 @@ function noah1_getDirection(gridSize,snake,apples,direction){
                     }
                 }
             }
+        } 
+    }
+
+    if (headcol < applecol) {
+        if (direction != "l") {
+            return "r"
         }
-             
-        // } else {
-        //     if (checkOneTurn(applecol,applerow,headcol,headrow) != false) {
-        //         if (checkOneTurn(headcol,headrow,applecol,applerow)[0] == applecol) {
-        //             if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
-        //                 return "d";
-        //             } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
-        //                 return "u"
-        //             } else if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
-        //                 return "r"
-        //             } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
-        //                 return "l"
-        //             }
-        //         } else {
-        //             if (headcol < checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
-        //                 return "d";
-        //             } else if (headcol > checkOneTurn(headcol,headrow,applecol,applerow)[0]) {
-        //                 return "u"
-        //             } else if (headrow < checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
-        //                 return "r"
-        //             } else if (headrow > checkOneTurn(headcol,headrow,applecol,applerow)[1]) {
-        //                 return "l"
-        //             }
-        //         }
-        //     }
-        // }
+    } else if (headcol > applecol) {
+        if (direction != "r") {
+            return "l"
+        }
+    } else if (headrow < applerow) {
+        if (direction != "u") {
+            return "d";
+        }
+    } else if (headrow > applerow) { 
+        if (direction != "d") {
+            return "u"
+        }
     }
 }
 
