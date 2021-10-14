@@ -6,10 +6,12 @@ function moreUpdate(){
     if (!gameOver){
         if (ai == ""){
             if(getItem("ai") === null){
-                ai = 'hdcola';
+                ai = 'parker2';
             }else{
                 ai = getItem("ai")
             }
+            print('parker_map')
+            // ai = "parker_map"
             selectAi.selected(ai)
         }
         d = ais[ai].getDirection(gridSize,snake,apples,direction);

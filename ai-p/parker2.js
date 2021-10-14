@@ -1,95 +1,85 @@
-let isOnTop = false;
-let twirlMode = false;
-let isAtEnd = true;
-let twirl = 0;
-let num = 0;
-let dapples;
+let onTop = false;
+let spinMode = false;
+let atEnd = true;
+let spin = 0;
+let p2num = 0;
+let p2dapples;
 
 
-function parker2_indexToColRow(index) {
+function p2_indexToColRow(index) {
     return [int(index/gridSize), index%gridSize];
 }
 
-function get_apples_in_row(row,array,gridSize) {
-    num = 0;
-    print("====")
-    for (let i = row*gridSize; i < (row+1)*gridSize; i++) {
-        print(i)
-        if (array.includes(i)) {
-            num += 1
+function p2get_apples_in_row(row,array,gridSize) {
+    p2num = 0;
+    for (let j = row*gridSize; j < (row+1)*gridSize; j++) {
+        if (array.includes(j)) {
+            p2num += 1
         }
     }
-    return num;
+    return p2num;
 }
 
 function parker2_getDirection(gridSize,snake,apples,direction){
     
-    let head = parker2_indexToColRow(snake[0])
-    let headidx = snake[0]
-    let headrow = head[0]
-    let headcol = head[1]
+    let p2head = p2_indexToColRow(snake[0])
+    let p2headrow = p2head[0]
 
-    let apple = parker2_indexToColRow(apples[0])
-    let appleidx = apples[0]
-    let applerow = apple[0]
-    let applecol = apple[1]
-
-
-    if (get_apples_in_row(headrow,dapples,gridSize) >= 4 || twirlMode == true || isOnTop == true || isAtEnd == false) {
-        isAtEnd = false;
-        if (twirlMode == false) {
+    if (p2get_apples_in_row(p2headrow,p2dapples,gridSize) >= 4 || spinMode == true || onTop == true || atEnd == false) {
+        atEnd = false;
+        if (spinMode == false) {
             if (direction == "l") {
-                if (snake[0] == 0 || isOnTop == true) {
-                    isOnTop = true;
+                if (snake[0] == 0 || onTop == true) {
+                    onTop = true;
                     return "d"
                 } 
-                if (snake[0] % gridSize == 1 && snake[0] > gridSize-1 && isOnTop == false){
-                    isAtEnd = true;
+                if (snake[0] % gridSize == 1 && snake[0] > gridSize-1 && onTop == false){
+                    atEnd = true;
                     return "u"; 
                 } 
             }else if (direction == "d") {
                 if (snake[0] === (gridSize * (gridSize-1))){
-                    isOnTop = false;
+                    onTop = false;
                     return "r";
                 } 
             }else if (direction == "r") {
-                if (snake[0]%gridSize==gridSize-1 && isOnTop == false){
+                if (snake[0]%gridSize==gridSize-1 && onTop == false){
                     return "u";
                 } 
             }else if (direction == "u") {
                 if (snake[0]%gridSize==gridSize-1 && snake[0] != (gridSize * 2)-1){
                     return "l";
                 } else if (snake[0]%gridSize==gridSize-1) {
-                    twirlMode = true;
-                    twirl = 0
+                    spinMode = true;
+                    spin = 0
                 } else {
                     return "r"
                 }
             }
         } else {
             if (snake[0] != 1) {
-                if (twirl == 0) {
-                    twirl = 1
+                if (spin == 0) {
+                    spin = 1
                     return "l";
-                } else if (twirl == 1) {
-                    twirl = 2
+                } else if (spin == 1) {
+                    spin = 2
                     return "d";
-                } else if (twirl == 2) {
-                    twirl = 3
+                } else if (spin == 2) {
+                    spin = 3
                     return "l";
-                } else if (twirl == 3) {
-                    twirl = 0
+                } else if (spin == 3) {
+                    spin = 0
                     return "u";
                 }
             } else {
-                twirlMode = false;
+                spinMode = false;
                 return "l"
             }  
         }
     } else {
-        if (headrow == 1) {
-            twirlMode = true;
-            isOnTop = true;
+        if (p2headrow == 1) {
+            spinMode = true;
+            onTop = true;
         } else {
             return "u"
         }
@@ -99,18 +89,17 @@ function parker2_getDirection(gridSize,snake,apples,direction){
 }
 
 function parker2_newGame(){
-    dapples = apples
+    p2dapples = apples
     direction = "r"
-    isOnTop = false;
-    twirlMode = false;
-    isAtEnd = true;
-    twirl = 0
-    num = 0
+    onTop = false;
+    spinMode = false;
+    atEnd = true;
+    spin = 0
+    p2num = 0
     return;
 }
 
-ais['onion'] = {
+ais['parker2'] = {
     getDirection: parker2_getDirection,
     newGame: parker2_newGame
 };
-
