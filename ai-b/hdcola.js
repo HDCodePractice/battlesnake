@@ -25,6 +25,7 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
             return "r";
         }
     }
+    return "r";
 }
 
 function hdcola_newGame(){

@@ -23,6 +23,7 @@ function sicheng_getDirection(gridSize,snake,apples,direction){
             return "r";
         }
     }
+    return "r";
 }
 
 function sicheng_newGame(){
