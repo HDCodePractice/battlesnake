@@ -9,8 +9,6 @@ function moreUpdate(){
             }else{
                 ai = getItem("ai")
             }
-            print('parker_map')
-            // ai = "parker_map"
             selectAi.selected(ai)
         }
         d = ais[ai].getDirection(gridSize,snake,apples,direction);
