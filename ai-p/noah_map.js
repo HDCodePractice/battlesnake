@@ -113,4 +113,3 @@ ais['noah'] = {
     getDirection: noah_getDirection,
     newGame: noah_newGame
 };
-

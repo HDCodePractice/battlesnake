@@ -1,7 +1,6 @@
 let ais = {};
 ai = "";
 
-
 function moreUpdate(){
     if (!gameOver){
         if (ai == ""){
