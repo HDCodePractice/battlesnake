@@ -1,4 +1,4 @@
-function hdcola_getDirection(gridSize,snake,apples,direction){
+function hdcola_getDirection(gridSize,snake,apples,direction,snakes){
     // console.log(gridSize*gridSize-1,snake[0],apples);
     if (direction == "l") {
         if (snake[0]%gridSize==0){
@@ -25,6 +25,7 @@ function hdcola_getDirection(gridSize,snake,apples,direction){
             return "r";
         }
     }
+    return "r";
 }
 
 function hdcola_newGame(){

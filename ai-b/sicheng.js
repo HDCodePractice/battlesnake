@@ -1,4 +1,4 @@
-function sicheng_getDirection(gridSize,snake,apples,direction){
+function sicheng_getDirection(gridSize,snake,apples,direction,snakes){
     if (direction == "l") {
         if (snake[0]%gridSize==0){
             return (snake[0] === 0)?"d":"u"
@@ -23,6 +23,7 @@ function sicheng_getDirection(gridSize,snake,apples,direction){
             return "r";
         }
     }
+    return "r";
 }
 
 function sicheng_newGame(){
