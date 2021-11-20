@@ -21,3 +21,7 @@ function moreSettings(){
 function moreNewGame(){
     return
 }
+
+function moreSetup(){
+
+}
