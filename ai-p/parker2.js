@@ -1,6 +1,6 @@
 let onTop = false;
 let spinMode = false;
-let atEnd = true;
+let besideawall = true;
 let spin = 0;
 let p2num = 0;
 let p2dapples;
@@ -25,8 +25,8 @@ function parker2_getDirection(gridSize,snake,apples,direction){
     let p2head = p2_indexToColRow(snake[0])
     let p2headrow = p2head[0]
 
-    if (p2get_apples_in_row(p2headrow,p2dapples,gridSize) >= 4 || spinMode == true || onTop == true || atEnd == false) {
-        atEnd = false;
+    if (p2get_apples_in_row(p2headrow,p2dapples,gridSize) >= 4 || spinMode == true || onTop == true || besideawall == false) {
+        besideawall = false;
         if (spinMode == false) {
             if (direction == "l") {
                 if (snake[0] == 0 || onTop == true) {
@@ -34,7 +34,7 @@ function parker2_getDirection(gridSize,snake,apples,direction){
                     return "d"
                 } 
                 if (snake[0] % gridSize == 1 && snake[0] > gridSize-1 && onTop == false){
-                    atEnd = true;
+                    besideawall = true;
                     return "u"; 
                 } 
             }else if (direction == "d") {
@@ -93,10 +93,10 @@ function parker2_newGame(){
     direction = "r"
     onTop = false;
     spinMode = false;
-    atEnd = true;
+    besideawall = true;
     spin = 0
     p2num = 0
-    return;
+    return;                
 }
 
 ais['parker2'] = {

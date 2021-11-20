@@ -1,12 +1,11 @@
 let ais = {};
 ai = "";
 
-
 function moreUpdate(){
     if (!gameOver){
         if (ai == ""){
             if(getItem("ai") === null){
-                ai = 'parker2';
+                ai = 'hdcola';
             }else{
                 ai = getItem("ai")
             }
