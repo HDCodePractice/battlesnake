@@ -314,6 +314,10 @@ function draw() {
         startButton.html("Start Game");
     }else{
         background(220);
+        let snakes = [];
+        for (let index = 0; index < members.length; index++) {
+            snakes.push(members[index].snake)
+        }
         if (members[0].direction != ""){
             for (let index = 0; index < members.length; index++) {
                 if (memberChoice[index] != "human" && memberChoice[index] != "-----"){
@@ -321,7 +325,8 @@ function draw() {
                         gridSize, 
                         members[index].snake, 
                         apples, 
-                        members[index].direction);
+                        members[index].direction,
+                        snakes);
                     }
             }
         }
