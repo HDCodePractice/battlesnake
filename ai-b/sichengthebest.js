@@ -210,3 +210,12 @@ function sicheng_checkDirection(gridSize,members,memberIndex,apples,direction,ol
     }
     return check;
 }
+
+ais['sichengthebest'] = {
+    getDirection: sichengthebest_getDirection,
+    newGame: sichengthebest_newGame
+}
+
+function sichengthebest_newGame(){
+    return;
+}
