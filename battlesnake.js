@@ -227,7 +227,7 @@ function checkOnApple(member) {
     }
 }
 
-function updateSnake(member) {
+function updateSnake(member,ishuman) {
     snake = member.snake;
     direction = member.direction;
     hp = member.hp;
@@ -261,7 +261,16 @@ function updateSnake(member) {
                 snake.splice(0,0,snake[0]-1);
                 checkOnApple(member);
             }
-        } 
+        }else{
+            if (ishuman === false){
+                if (snake[0] % gridSize === gridSize - 1){
+                    member.gameOver = true;
+                }else{
+                    snake.splice(0,0,snake[0]+1)
+                    checkOnApple(member);
+                }
+            }
+        }
         for (let s = 1; s < snake.length; s++) {
             if (snake[0] == snake[s]) {
                 member.gameOver = true;
@@ -332,10 +341,16 @@ function draw() {
         }
         for (let index = 0; index < members.length; index++) {
             const member = members[index];
-            if (!member.gameOver){
-                updateSnake(member);
-            }else{
-                member.snake = [];
+            let ishuman = false
+            if(index === 0){
+                ishuman = true
+            }
+            if(members[0].direction !== ""){
+                if (!member.gameOver){
+                    updateSnake(member,ishuman);
+                }else{
+                    member.snake = [];
+                }
             }
         }
         for (let col = 0; col < gridSize; col++) {
