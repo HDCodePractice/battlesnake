@@ -1,18 +1,7 @@
-function indexToColRow(index) {
-    return [ int(index / gridSize) , index % gridSize];
-}
-
-function colRowToIndex(col, row) {
-    return row * gridSize + col;
-}
-
-
-
-function claire3_getDirection(gridSize,snake,apples,direction){
-    let row = int(snake[0] / gridSize);
-    int(snake[0] / gridSize);
-    let col = snake[0] % gridSize;
-
+function hdcola2_getDirection(gridSize,snake,apples,direction){
+    let snakeHead = indexToColRow(snake[0]);
+    let row = snakeHead[0];
+    let col = snakeHead[1];
     if(row === 0 && row < 13){
         if (col%2 === 0 || col === 0){
             return "r";
@@ -40,23 +29,22 @@ function claire3_getDirection(gridSize,snake,apples,direction){
         }else{
             return "l";
         }
-    }
-    if(col===13&&row === 0){
-        return "r"
-    }
-    if(col === 14&& row ===0){
-        return "d"
-    }
-    if(col ===14&& row ===1){
-        return "l"
+    }else if (col>12 && row < 13){
+        if(col === 13 && row%2 === 0){
+            return "r";
+        }else if(col === 14 && row%2 === 1){
+            return "l";
+        }else{
+            return "d";
+        }
     }
 }
 
-function claire3_newGame(){
+function hdcola2_newGame(){
     return;
 }
 
-ais['claire3'] = {
-    getDirection: claire3_getDirection,
-    newGame: claire3_newGame
+ais['hdcola2'] = {
+    getDirection: hdcola2_getDirection,
+    newGame: hdcola2_newGame
 };
