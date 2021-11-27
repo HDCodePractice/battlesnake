@@ -1,25 +1,23 @@
-let isOnTop = false;
-let twirlMode = false;
-let isAtEnd = true;
-let twirl = 0;
-let num = 0;
-let dapples;
+let onTop = false;
+let twirling = false;
+let end = true;
+let twirls = 0;
 
+let constantApples;
+let apple;
 
 function noah_indexToColRow(index) {
     return [int(index/gridSize), index%gridSize];
 }
 
-function get_apples_in_row(row,array,gridSize) {
-    num = 0;
-    print("====")
-    for (let i = row*gridSize; i < (row+1)*gridSize; i++) {
-        print(i)
-        if (array.includes(i)) {
-            num += 1
+function applesInRow(row,array,gridSize) {
+    apple = 0;
+    for (let each = row * gridSize; each < (row+1) * gridSize; each++) {
+        if (array.includes(each)) {
+            apple += 1
         }
     }
-    return num;
+    return apple;
 }
 
 function noah_getDirection(gridSize,snake,apples,direction){
@@ -34,78 +32,79 @@ function noah_getDirection(gridSize,snake,apples,direction){
     let applerow = apple[0]
     let applecol = apple[1]
 
-
-    if (get_apples_in_row(headrow,dapples,gridSize) >= 4 || twirlMode == true || isOnTop == true || isAtEnd == false) {
-        isAtEnd = false;
-        if (twirlMode == false) {
-            if (direction == "l") {
-                if (snake[0] == 0 || isOnTop == true) {
-                    isOnTop = true;
-                    return "d"
-                } 
-                if (snake[0] % gridSize == 1 && snake[0] > gridSize-1 && isOnTop == false){
-                    isAtEnd = true;
-                    return "u"; 
-                } 
-            }else if (direction == "d") {
-                if (snake[0] === (gridSize * (gridSize-1))){
-                    isOnTop = false;
-                    return "r";
-                } 
-            }else if (direction == "r") {
-                if (snake[0]%gridSize==gridSize-1 && isOnTop == false){
-                    return "u";
-                } 
-            }else if (direction == "u") {
-                if (snake[0]%gridSize==gridSize-1 && snake[0] != (gridSize * 2)-1){
-                    return "l";
-                } else if (snake[0]%gridSize==gridSize-1) {
-                    twirlMode = true;
-                    twirl = 0
-                } else {
-                    return "r"
-                }
-            }
-        } else {
-            if (snake[0] != 1) {
-                if (twirl == 0) {
-                    twirl = 1
-                    return "l";
-                } else if (twirl == 1) {
-                    twirl = 2
-                    return "d";
-                } else if (twirl == 2) {
-                    twirl = 3
-                    return "l";
-                } else if (twirl == 3) {
-                    twirl = 0
-                    return "u";
+    if (apples.length > 80) {
+        if (applesInRow(headrow,constantApples,gridSize) >= 4 || twirling == true || onTop == true || end == false) {
+            end = false;
+            if (twirling == false) {
+                if (direction == "l") {
+                    if (headidx == 0 || onTop == true) {
+                        onTop = true;
+                        return "d"
+                    } 
+                    if (headidx % gridSize == 1 && headidx > gridSize - 1 && onTop == false){
+                        end = true;
+                        return "u"; 
+                    } 
+                } else if (direction == "d") {
+                    if (headidx === (gridSize * (gridSize-1))){
+                        onTop = false;
+                        return "r";
+                    } 
+                } else if (direction == "r") {
+                    if (headidx % gridSize == gridSize - 1 && onTop == false){
+                        return "u";
+                    } 
+                } else if (direction == "u") {
+                    if (headidx % gridSize == gridSize - 1 && headidx != (gridSize * 2) - 1){
+                        return "l";
+                    } else if (headidx % gridSize == gridSize - 1) {
+                        twirling = true;
+                        twirls = 0
+                    } else {
+                        return "r";
+                    }
                 }
             } else {
-                twirlMode = false;
-                return "l"
-            }  
+                if (headidx != 1) {
+                    let twirlingOrder = ["l","d","l","u"];
+                    for (let twirl = 0; twirl < 4; twirl ++) {
+                        if (twirls == twirl) {
+                            if (twirl != 3) {
+                                twirls = twirl + 1;
+                            } else {
+                                twirls = 0;
+                            }
+                            return twirlingOrder[twirl]
+                        }
+                    }
+                } else {
+                    twirling = false;
+                    return "l"
+                }  
+            }
+        } else {
+            if (headrow == 1) {
+                twirling = true;
+                onTop = true;
+            } else {
+                return "u"
+            }
         }
     } else {
-        if (headrow == 1) {
-            twirlMode = true;
-            isOnTop = true;
-        } else {
-            return "u"
-        }
+
     }
-        
-        
 }
 
 function noah_newGame(){
-    dapples = apples
-    direction = "r"
-    isOnTop = false;
-    twirlMode = false;
-    isAtEnd = true;
-    twirl = 0
-    num = 0
+    constantApples = apples;
+    direction = "r";
+    onTop = false;
+    twirling = false;
+    end = true;
+
+    twirls = 0;
+    apple = 0;
+    
     return;
 }
 
