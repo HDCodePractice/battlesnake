@@ -48,7 +48,6 @@ function sicheng2_getDirection(gridSize,snake,apples,direction){
             }
         }
     }
-    return direction;
 }
 
 function sicheng2_newGame(){

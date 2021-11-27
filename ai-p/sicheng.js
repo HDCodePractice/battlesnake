@@ -1,9 +1,4 @@
-function sicheng_getDirection(gridSize,snake,apples,direction){
-    print(direction)
-    print(snake[0]%gridSize+1,'r')
-    print(snake[0]%gridSize-1,'l')
-    print(int(snake[0]/gridSize)+1,'d')
-    print(int(snake[0]/gridSize)-1,'u')
+function sicheng_getDirection(gridSize,snake,apples,direction) {
     if (turn === 1) {
         return 'u'
     }
