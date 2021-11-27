@@ -49,7 +49,7 @@ function newGame(){
         members.push({
             name: memberChoice[index],
             snake: [],
-            direction: "",
+            direction: "r",
             score: 0,
             hp: maxHp,
             turn: 0,
@@ -76,7 +76,7 @@ function newGame(){
 }
 
 function setup() {
-    createCanvas(cellSize * gridSize + 60 + selectWidth, cellSize * gridSize + 2 + scoreHeight);
+    createCanvas(cellSize * gridSize + 2 + selectWidth, cellSize * gridSize + 2 + scoreHeight);
     snakecolors = [
         color(0, 0, 255),
         color(255, 0, 0),
@@ -227,7 +227,7 @@ function checkOnApple(member) {
     }
 }
 
-function updateSnake(member,ishuman) {
+function updateSnake(member) {
     snake = member.snake;
     direction = member.direction;
     hp = member.hp;
@@ -261,16 +261,7 @@ function updateSnake(member,ishuman) {
                 snake.splice(0,0,snake[0]-1);
                 checkOnApple(member);
             }
-        }else{
-            if (ishuman === false){
-                if (snake[0] % gridSize === gridSize - 1){
-                    member.gameOver = true;
-                }else{
-                    snake.splice(0,0,snake[0]+1)
-                    checkOnApple(member);
-                }
-            }
-        }
+        } 
         for (let s = 1; s < snake.length; s++) {
             if (snake[0] == snake[s]) {
                 member.gameOver = true;
@@ -329,28 +320,28 @@ function draw() {
         }
         if (members[0].direction != ""){
             for (let index = 0; index < members.length; index++) {
-                if (memberChoice[index] != "human" && memberChoice[index] != "-----"){
-                    members[index].direction = ais[memberChoice[index]].getDirection(
-                        gridSize, 
-                        members[index].snake, 
-                        apples, 
-                        members[index].direction,
-                        snakes);
+                for (let index = 0; index < members.length; index++) {
+                    let orgDirection = members[index].direction;
+                    if (memberChoice[index] != "human" && memberChoice[index] != "-----"){
+                        members[index].direction = ais[memberChoice[index]].getDirection(
+                            gridSize, 
+                            members[index].snake, 
+                            apples, 
+                            members[index].direction,
+                            snakes);
                     }
+                    if  (["r","u","d","l"].indexOf(members[index].direction)==-1){
+                        members[index].direction = orgDirection;
+                    }
+                }
             }
         }
         for (let index = 0; index < members.length; index++) {
             const member = members[index];
-            let ishuman = false
-            if(index === 0){
-                ishuman = true
-            }
-            if(members[0].direction !== ""){
-                if (!member.gameOver){
-                    updateSnake(member,ishuman);
-                }else{
-                    member.snake = [];
-                }
+            if (!member.gameOver){
+                updateSnake(member);
+            }else{
+                member.snake = [];
             }
         }
         for (let col = 0; col < gridSize; col++) {
