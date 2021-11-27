@@ -6,8 +6,6 @@ function colRowToIndex(col, row) {
     return row * gridSize + col;
 }
 
-
-
 function claire3_getDirection(gridSize,snake,apples,direction){
     let row = int(snake[0] / gridSize);
     int(snake[0] / gridSize);
