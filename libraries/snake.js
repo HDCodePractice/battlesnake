@@ -9,7 +9,7 @@ let direction = "r";  // l, r, u, d
 let score;
 let apples = [];
 let gameOver = false;
-let speed = 100;
+let speed = 25;
 let appleCount = 3;
 let maxHp = 100;
 let hp = 0;
@@ -146,6 +146,7 @@ function setup() {
     newGame();
     settings();
     frameRate(speed);
+    moreSetup();
 }
 
 

@@ -1,4 +1,12 @@
 function sicheng_getDirection(gridSize,snake,apples,direction){
+    print(direction)
+    print(snake[0]%gridSize+1,'r')
+    print(snake[0]%gridSize-1,'l')
+    print(int(snake[0]/gridSize)+1,'d')
+    print(int(snake[0]/gridSize)-1,'u')
+    if (turn === 1) {
+        return 'u'
+    }
     rows = []
     cols = []
     for (let appleIndex = 0; appleIndex < apples.length; appleIndex++) {
@@ -7,163 +15,55 @@ function sicheng_getDirection(gridSize,snake,apples,direction){
         cols.push(apple%gridSize)
     }
     if (snake[0]%gridSize < cols[0]) {
-        if (direction != 'l' && !snake.includes(snake[0]+1) && sicheng_checkIfStuck(direction,'r')) {
+        if (direction != 'l' && !snake.includes(snake[0]+1)) {
             return 'r';
         } else {
-            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd' && !int((snake[0]-gridSize)/gridSize) < gridSize && sicheng_checkIfStuck(direction,'u')) {
+            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd' && !snake.includes(snake[0]-gridSize)) {
                 return 'u';
-            } else if (direction != 'u' && !snake.includes(snake[0]+gridSize) && !int((snake[0]+gridSize)/gridSize) < gridSize && sicheng_checkIfStuck(direction,'d')) {
+            } else if (int(snake[0]/gridSize) < rows[0] && direction != 'u' && !snake.includes(snake[0]+gridSize)) {
                 return 'd';
-            } else {
+            } else if (snake[0]%gridSize-1 < 0 && direction != 'r' && !snake.includes(snake[0]-1)) {
                 return 'l';
             }
         }
     } else if (snake[0]%gridSize > cols[0]) {
-        if (direction != 'r' && !snake.includes(snake[0]-1) && sicheng_checkIfStuck(direction,'l')) {
+        if (direction != 'r' && !snake.includes(snake[0]-1)) {
             return 'l';
         } else {
-            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd' && !int((snake[0]-gridSize)/gridSize) < gridSize && sicheng_checkIfStuck(direction,'u')) {
+            if (int(snake[0]/gridSize) > rows[0] && !snake.includes(snake[0]-gridSize) && direction != 'd' && !snake.includes(snake[0]-gridSize)) {
                 return 'u';
-            } else if (direction != 'u' && !snake.includes(snake[0]+gridSize) && !int((snake[0]+gridSize)/gridSize) < gridSize && sicheng_checkIfStuck(direction,'d')) {
+            } else if (int(snake[0]/gridSize) < rows[0] && direction != 'u' && !snake.includes(snake[0]+gridSize)) {
                 return 'd';
-            } else {
+            } else if (snake[0]%gridSize+1 >= gridSize && direction != 'l' && !snake.includes(snake[0]+1)) {
                 return 'r';
             }
         }
     } else if (int(snake[0]/gridSize) > rows[0]) {
-        if (direction != 'd' && !snake.includes(snake[0]-gridSize) && sicheng_checkIfStuck(direction,'u')) {
+        if (direction != 'd' && !snake.includes(snake[0]-gridSize)) {
             return 'u';
         } else {
-            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r' && !(snake[0]-1)%gridSize < 1 && sicheng_checkIfStuck(direction,'l')) {
+            if (snake[0]%gridSize < cols[0] && direction != 'r' && !snake.includes(snake[0]-1)) {
                 return 'l';
-            } else if (direction != 'l' && !snake.includes(snake[0]+1) && !(snake[0]+1)%gridSize < gridSize && sicheng_checkIfStuck(direction,'r')) {
+            } else if (snake[0]%gridSize > cols[0] && direction != 'l' && !snake.includes(snake[0]+1)) {
                 return 'r';
-            } else {
+            }  else if (int(snake[0]/gridSize)+1 >= gridSize && direction != 'u' && !snake.includes(snake[0]+gridSize)) {
                 return 'd';
             }
         }
     } else if (int(snake[0]/gridSize) < rows[0]) {
-        if (direction != 'u' && !snake.includes(snake[0]+gridSize) && sicheng_checkIfStuck(direction,'d')) {
+        if (direction != 'u' && !snake.includes(snake[0]+gridSize)) {
             return 'd';
         } else {
-            if (snake[0]%gridSize < cols[0] && !snake.includes(snake[0]-1) && direction != 'r' && !(snake[0]-1)%gridSize < gridSize && sicheng_checkIfStuck(direction,'l')) {
+            if (snake[0]%gridSize < cols[0] && direction != 'r' && !snake.includes(snake[0]-1)) {
                 return 'l';
-            } else if (direction != 'l' && !snake.includes(snake[0]+1) && !(snake[0]+1)%gridSize < gridSize && sicheng_checkIfStuck(direction,'r')) {
+            } else if (snake[0]%gridSize > cols[0] && direction != 'l' && !snake.includes(snake[0]+1)) {
                 return 'r';
-            } else {
+            } else if (int(snake[0]/gridSize)-1 < 0 && direction != 'd' && !snake.includes(snake[0]-gridSize)) {
                 return 'u';
             }
         }
     }
-}
-
-function sicheng_checkIfStuck(direction,checkingDirection,gridSize) {
-    if (direction === 'l') {
-        if (checkingDirection === 'l') {
-            for (let index = snake[0]-1; index > int(snake[0]/gridSize)*gridSize; index--) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'u') {
-            for (let index = snake[0]-gridSize; index > snake[0]%gridSize+gridSize*gridSize-1; index-=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }  else if (checkingDirection === 'd') {
-            for (let index = snake[0]+gridSize; index < snake[0]%gridSize; index+=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } 
-    } else if (direction === 'r') {
-        if (checkingDirection === 'r') {
-            for (let index = snake[0]+1; index < (int(snake[0]/gridSize)+1)*gridSize-1; index++) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'u') {
-            for (let index = snake[0]-gridSize; index > snake[0]%gridSize+gridSize*gridSize-1; index-=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }  else if (checkingDirection === 'd') {
-            for (let index = snake[0]+gridSize; index < snake[0]%gridSize; index+=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } 
-    } else if (direction === 'd') {
-        if (checkingDirection === 'r') {
-            for (let index = snake[0]+1; index < (int(snake[0]/gridSize)+1)*gridSize-1; index++) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'l') {
-            for (let index = snake[0]-1; index > int(snake[0]/gridSize)*gridSize; index--) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'd') {
-            for (let index = snake[0]+gridSize; index < snake[0]%gridSize; index+=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true
-                }
-            }
-        }
-    } else if (direction === 'u') {
-        if (checkingDirection === 'r') {
-            for (let index = snake[0]+1; index < (int(snake[0]/gridSize)+1)*gridSize-1; index++) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'l') {
-            for (let index = snake[0]-1; index > int(snake[0]/gridSize)*gridSize; index--) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } else if (checkingDirection === 'u') {
-            for (let index = snake[0]-gridSize; index > snake[0]%gridSize+gridSize*gridSize-1; index-=gridSize) {
-                if (snake.includes(index)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } 
-    }
-    return true;
+    return direction;
 }
 
 function sicheng_newGame(){
