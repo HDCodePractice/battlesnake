@@ -1,5 +1,5 @@
 const cellSize = 20;
-const gridSize = 10;
+const gridSize = 15;
 const selectWidth = 220;
 const scoreHeight = 50;
 let speed = 10;
@@ -320,20 +320,14 @@ function draw() {
         }
         if (members[0].direction != ""){
             for (let index = 0; index < members.length; index++) {
-                for (let index = 0; index < members.length; index++) {
-                    let orgDirection = members[index].direction;
-                    if (memberChoice[index] != "human" && memberChoice[index] != "-----"){
-                        members[index].direction = ais[memberChoice[index]].getDirection(
-                            gridSize, 
-                            members[index].snake, 
-                            apples, 
-                            members[index].direction,
-                            snakes);
+                if (memberChoice[index] != "human" && memberChoice[index] != "-----"){
+                    members[index].direction = ais[memberChoice[index]].getDirection(
+                        gridSize, 
+                        members[index].snake, 
+                        apples, 
+                        members[index].direction,
+                        snakes);
                     }
-                    if  (["r","u","d","l"].indexOf(members[index].direction)==-1){
-                        members[index].direction = orgDirection;
-                    }
-                }
             }
         }
         for (let index = 0; index < members.length; index++) {
