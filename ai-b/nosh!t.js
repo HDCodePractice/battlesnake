@@ -170,10 +170,6 @@ function ns_checkOneTurn(snakes,snakecol,snakerow,applecol,applerow,direction) {
     }
 }
 
-function ns_checkTwoTurn(snakes,snakecol,snakerow,applecol,applerow) {
-    
-}
-
 function ns_snake_on_path(snakes,path_array) {
     for (let snakeIndex = 0; snakeIndex < snakes.length; snakeIndex++) {
         const snake = snakes[snakeIndex];
@@ -183,104 +179,6 @@ function ns_snake_on_path(snakes,path_array) {
                 return true;
             }
         }
-    }
-    return false;
-}
-
-function checkCol(col,srow,erow){
-    if (srow > erow){
-        const temp = srow;
-        srow = erow;
-        erow = temp;
-    }
-    for (let index = srow + 1; index < erow; index++) {
-        if (!ns_checkNull(col,index)){
-            return false;
-        }
-    }
-    return true    
-}
-
-function checkRow(row,scol,ecol){
-    print("检查行",row,scol,ecol);
-    if (scol > ecol){
-        const temp = scol;
-        scol = ecol;
-        ecol = temp;
-    }
-    for (let index = scol + 1; index < ecol; index++) {
-        if (ns_checkNull(index,row)===false){
-            print("检查",index,row,"不行");
-            return false
-        }
-    }
-    return true    
-}
-
-function checkOneTurnRow(acol,arow,bcol,brow) {
-    if ( checkRow(arow,acol,bcol) ){
-        if (checkCol(bcol,arow,brow) ){
-            if (ns_checkNull(bcol,arow)){
-                return true
-            }
-        }
-    }
-    
-    return false;
-}
-
-function checkOneTurnCol(acol,arow,bcol,brow) {
-    if (checkCol(acol,arow,brow) ){
-        if (checkRow(brow,acol,bcol) ){
-            if (ns_checkNull(acol,brow)){
-                return true
-            }
-        }
-    }
-    
-    return false;
-}
-
-function checkRowTwoTurn(acol,arow,bcol,brow){
-    if (arow > brow){
-        const temprow = arow;
-        arow = brow;
-        brow = temprow;
-        const tempcol = acol;
-        acol = bcol;
-        bcol = tempcol;
-    }
-    for (let icol = 0; icol <= gridSize; icol++) {
-        if (icol !== acol && icol !== bcol) {
-            if (checkOneTurn(acol,arow,icol,brow)) {
-                if (checkRow(brow,icol,bcol)) {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-function checkColTwoTurn(acol,arow,bcol,brow) {
-    // 把col小的放在a里，大的放在b里
-    if ( acol > bcol ){
-        const tempcol = acol;
-        acol = bcol;
-        bcol = tempcol;
-        const temprow = arow;
-        arow = brow;
-        brow = temprow;
-    }
-    for (let row = 0; row <= gridSize; row++) {
-        if (row !== arow && row !== brow) {
-            // 从A出发，到所有bcol和row的
-            if(checkOneTurn(acol,arow,bcol,row)){
-                if(checkCol(bcol,row,brow)){
-                    return true;
-                }
-            }
-        }        
     }
     return false;
 }
