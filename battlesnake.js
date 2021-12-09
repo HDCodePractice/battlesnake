@@ -288,7 +288,7 @@ function updateSnake(member) {
 
 function drawGameOver() {
     fill(255,0,0);
-    textSize(int(width/10));
+    textSize(int(width/12));
     text(
         'GAME OVER',
         5,
