@@ -45,7 +45,7 @@ function ns_getRoute(gridSize,membersnake,apples,direction,members) {
     let snakerow = ns_indexToColRow(snake)[1]
     if (ns_checkNoTurn(members,snakecol,snakerow,applecol,applerow,gridSize,direction) != "") {
         return ns_checkNoTurn(members,snakecol,snakerow,applecol,applerow,gridSize,direction)
-    } else if (ns_checkOneTurn(members,snakecol,snakerow,applecol,applerow,gridSize,direction) != "") {
+    } else if (["u","d","r","l"].includes(ns_checkOneTurn(members,snakecol,snakerow,applecol,applerow,gridSize,direction))) {
         return ns_checkOneTurn(members,snakecol,snakerow,applecol,applerow,gridSize,direction)
     } else {
         if (snakecol == gridSize) {
