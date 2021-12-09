@@ -76,7 +76,7 @@ function newGame(){
 }
 
 function setup() {
-    createCanvas(cellSize * gridSize + 2 + selectWidth, cellSize * gridSize + 2 + scoreHeight);
+    createCanvas(cellSize * gridSize + 50 + selectWidth, cellSize * gridSize + 50 + scoreHeight);
     snakecolors = [
         color(0, 0, 255),
         color(255, 0, 0),
