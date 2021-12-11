@@ -10,15 +10,21 @@ function hdcola_check_snakes_on_path(snakes,path){
     return false;
 }
 
-function hdcola_get_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes){
+function hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes,check_snake_head=false){
     let path = [];
     let step = 1;
     if (snake_head_row == apple_row ){
         if (apple_col < snake_head_col){
             step = -1;
         }
-        for (var j = snake_head_col+step ; j != apple_col; j+=step) {
-            path.push(colRowToIndex(j,snake_head_row));
+        if (check_snake_head){
+            for (var j = snake_head_col ; j != apple_col; j+=step) {
+                path.push(colRowToIndex(j,snake_head_row));
+            }    
+        }else{
+            for (var j = snake_head_col+step ; j != apple_col; j+=step) {
+                path.push(colRowToIndex(j,snake_head_row));
+            }    
         }
         if (hdcola_check_snakes_on_path(snakes,path)){
             return "";
@@ -32,13 +38,42 @@ function hdcola_get_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,di
         if (apple_row < snake_head_row){
             step = -1;
         }
-        for (var j = snake_head_row+step ; j != apple_row; j+=step) {
-            path.push(colRowToIndex(snake_head_col,j));
+        if (check_snake_head){
+            for (var j = snake_head_row ; j != apple_row; j+=step) {
+                path.push(colRowToIndex(snake_head_col,j));
+            }
+        }else{
+            for (var j = snake_head_row+step ; j != apple_row; j+=step) {
+                path.push(colRowToIndex(snake_head_col,j));
+            }
         }
         if (step == -1 && direction != "d") {
             return "u";
         }else if (step == 1 && direction != "u") {
             return "d";
+        }
+    }
+    return "";
+}
+
+function hdcola_check_one_turn(gridSize,snake,apples,direction,snakes){
+    let snake_head = snake[0];
+    let snake_head_row = indexToRowCol(snake_head)[0];
+    let snake_head_col = indexToRowCol(snake_head)[1];
+
+    for (var i = 0; i < apples.length; i++) {
+        let apple = apples[i];
+        let apple_row = indexToRowCol(apple)[0];
+        let apple_col = indexToRowCol(apple)[1];
+        let d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,snake_head_col,direction,snakes,check_snake_head=true);
+        let d2 = hdcola_check_one_no_turn(apple_row,snake_head_col,apple_row,apple_col,direction,snakes,check_snake_head=true);
+        if (d1 != "" && d2 != ""){
+            return d1;
+        }
+        d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,snake_head_row,apple_col,direction,snakes,check_snake_head=true);
+        d2 = hdcola_check_one_no_turn(snake_head_row,apple_col,apple_row,apple_col,direction,snakes,check_snake_head=true);
+        if (d1 != "" && d2 != ""){
+            return d1;
         }
     }
     return "";
@@ -53,7 +88,11 @@ function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
         let apple = apples[i];
         let apple_row = indexToRowCol(apple)[0];
         let apple_col = indexToRowCol(apple)[1];
-        let d = hdcola_get_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes)
+        let d = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes);
+        if (d != ""){
+            return d;
+        }
+        d = hdcola_check_one_turn(gridSize,snake,apples,direction,snakes)
         if (d != ""){
             return d;
         }
