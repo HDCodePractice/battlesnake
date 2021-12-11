@@ -10,6 +10,40 @@ function hdcola_check_snakes_on_path(snakes,path){
     return false;
 }
 
+function hdcola_get_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes){
+    let path = [];
+    let step = 1;
+    if (snake_head_row == apple_row ){
+        if (apple_col < snake_head_col){
+            step = -1;
+        }
+        for (var j = snake_head_col+step ; j != apple_col; j+=step) {
+            path.push(colRowToIndex(j,snake_head_row));
+        }
+        if (hdcola_check_snakes_on_path(snakes,path)){
+            return "";
+        }
+        if (step == -1 && direction != "r") {
+            return "l";
+        }else if (step == 1 && direction != "l") {
+            return "r";
+        }
+    }else if (snake_head_col == apple_col){
+        if (apple_row < snake_head_row){
+            step = -1;
+        }
+        for (var j = snake_head_row+step ; j != apple_row; j+=step) {
+            path.push(colRowToIndex(snake_head_col,j));
+        }
+        if (step == -1 && direction != "d") {
+            return "u";
+        }else if (step == 1 && direction != "u") {
+            return "d";
+        }
+    }
+    return "";
+}
+
 function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
     let snake_head = snake[0];
     let snake_head_row = indexToRowCol(snake_head)[0];
@@ -19,35 +53,9 @@ function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
         let apple = apples[i];
         let apple_row = indexToRowCol(apple)[0];
         let apple_col = indexToRowCol(apple)[1];
-        let path = [];
-        let step = 1;
-        if (snake_head_row == apple_row ){
-            if (apple_col < snake_head_col){
-                step = -1;
-            }
-            for (var j = snake_head_col+step ; j != apple_col; j+=step) {
-                path.push(colRowToIndex(j,snake_head_row));
-            }
-            if (hdcola_check_snakes_on_path(snakes,path)){
-                return "";
-            }
-            if (step == -1 && direction != "r") {
-                return "l";
-            }else if (step == 1 && direction != "l") {
-                return "r";
-            }
-        }else if (snake_head_col == apple_col){
-            if (apple_row < snake_head_row){
-                step = -1;
-            }
-            for (var j = snake_head_row+step ; j != apple_row; j+=step) {
-                path.push(colRowToIndex(snake_head_col,j));
-            }
-            if (step == -1 && direction != "d") {
-                return "u";
-            }else if (step == 1 && direction != "u") {
-                return "d";
-            }
+        let d = hdcola_get_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes)
+        if (d != ""){
+            return d;
         }
     }
     return "";
@@ -58,7 +66,6 @@ function hdcola_getDirection(gridSize,snake,apples,direction,snakes){
         direction = "r";
     }
     let d = hdcola_check_no_turn(gridSize,snake,apples,direction,snakes);
-    print("d: "+d);
     if (d != ""){
         return d;
     }
