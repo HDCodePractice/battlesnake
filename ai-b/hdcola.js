@@ -65,13 +65,13 @@ function hdcola_check_one_turn(gridSize,snake,apples,direction,snakes){
         let apple = apples[i];
         let apple_row = indexToRowCol(apple)[0];
         let apple_col = indexToRowCol(apple)[1];
-        let d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,snake_head_col,direction,snakes,check_snake_head=true);
-        let d2 = hdcola_check_one_no_turn(apple_row,snake_head_col,apple_row,apple_col,direction,snakes,check_snake_head=true);
+        let d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,snake_head_col,direction,snakes,check_snake_head=false);
+        let d2 = hdcola_check_one_no_turn(apple_row,snake_head_col,apple_row,apple_col,"",snakes,check_snake_head=true);
         if (d1 != "" && d2 != ""){
             return d1;
         }
-        d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,snake_head_row,apple_col,direction,snakes,check_snake_head=true);
-        d2 = hdcola_check_one_no_turn(snake_head_row,apple_col,apple_row,apple_col,direction,snakes,check_snake_head=true);
+        d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,snake_head_row,apple_col,direction,snakes,check_snake_head=false);
+        d2 = hdcola_check_one_no_turn(snake_head_row,apple_col,apple_row,apple_col,"",snakes,check_snake_head=true);
         if (d1 != "" && d2 != ""){
             return d1;
         }
@@ -92,10 +92,6 @@ function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
         if (d != ""){
             return d;
         }
-        d = hdcola_check_one_turn(gridSize,snake,apples,direction,snakes)
-        if (d != ""){
-            return d;
-        }
     }
     return "";
 }
@@ -105,6 +101,10 @@ function hdcola_getDirection(gridSize,snake,apples,direction,snakes){
         direction = "r";
     }
     let d = hdcola_check_no_turn(gridSize,snake,apples,direction,snakes);
+    if (d != ""){
+        return d;
+    }
+    d = hdcola_check_one_turn(gridSize,snake,apples,direction,snakes)
     if (d != ""){
         return d;
     }
