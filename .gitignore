@@ -107,3 +107,4 @@ dist
 test.js
 
 .vscode
+.DS_Store
