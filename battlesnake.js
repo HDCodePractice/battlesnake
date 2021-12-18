@@ -49,7 +49,7 @@ function newGame(){
         members.push({
             name: memberChoice[index],
             snake: [],
-            direction: "",
+            direction: "r",
             score: 0,
             hp: maxHp,
             turn: 0,
@@ -76,7 +76,7 @@ function newGame(){
 }
 
 function setup() {
-    createCanvas(cellSize * gridSize + 2 + selectWidth, cellSize * gridSize + 2 + scoreHeight);
+    createCanvas(cellSize * gridSize + 50 + selectWidth, cellSize * gridSize + 50 + scoreHeight);
     snakecolors = [
         color(0, 0, 255),
         color(255, 0, 0),
@@ -288,7 +288,7 @@ function updateSnake(member) {
 
 function drawGameOver() {
     fill(255,0,0);
-    textSize(int(width/10));
+    textSize(int(width/12));
     text(
         'GAME OVER',
         5,

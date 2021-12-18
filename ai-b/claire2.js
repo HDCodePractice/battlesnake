@@ -6,8 +6,6 @@ function colRowToIndex(col, row) {
     return row * gridSize + col;
 }
 
-
-
 function claire2_getDirection(gridSize,snake,apples,direction,snakes){
     let smallest = 0
     let appleDistance = gridSize * 2
@@ -83,7 +81,6 @@ function claire2_getDirection(gridSize,snake,apples,direction,snakes){
                 return "r";
             }
         }
-
     } else if (snakess < 3){
         if (apple[0] < snakeHead[0]){
             if ( snake.includes( snake[0] - gridSize) ){
@@ -121,7 +118,6 @@ function claire2_getDirection(gridSize,snake,apples,direction,snakes){
             return direction;
         }
     }
-
     for (let i = 0; i < apples.length; i++) {
         let applerow = int(apples[i] / gridSize)
         let applecol = apples[i] % gridSize

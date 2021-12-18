@@ -46,3 +46,4 @@ ais['hdcola'] = {
     getDirection: hdcola_getDirection,
     newGame: hdcola_newGame
 };
+
