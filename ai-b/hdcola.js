@@ -47,6 +47,9 @@ function hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,apple_
                 path.push(colRowToIndex(snake_head_col,j));
             }
         }
+        if (hdcola_check_snakes_on_path(snakes,path)){
+            return "";
+        }
         if (step == -1 && direction != "d") {
             return "u";
         }else if (step == 1 && direction != "u") {
