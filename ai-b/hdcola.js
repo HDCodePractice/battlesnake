@@ -59,13 +59,13 @@ function hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,apple_
     return "";
 }
 
-function hdcola_check_one_turn(gridSize,snake,apples,direction,snakes){
+function hdcola_check_one_turn(gridSize,snake,all_apples,direction,snakes){
     let snake_head = snake[0];
     let snake_head_row = indexToRowCol(snake_head)[0];
     let snake_head_col = indexToRowCol(snake_head)[1];
 
-    for (var i = 0; i < apples.length; i++) {
-        let apple = apples[i];
+    for (var i = 0; i < all_apples.length; i++) {
+        let apple = all_apples[i];
         let apple_row = indexToRowCol(apple)[0];
         let apple_col = indexToRowCol(apple)[1];
         let d1 = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,snake_head_col,direction,snakes,check_snake_head=false);
@@ -82,13 +82,13 @@ function hdcola_check_one_turn(gridSize,snake,apples,direction,snakes){
     return "";
 }
 
-function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
+function hdcola_check_no_turn(gridSize,snake,all_apples,direction,snakes){
     let snake_head = snake[0];
     let snake_head_row = indexToRowCol(snake_head)[0];
     let snake_head_col = indexToRowCol(snake_head)[1];
 
-    for (var i = 0; i < apples.length; i++) {
-        let apple = apples[i];
+    for (var i = 0; i < all_apples.length; i++) {
+        let apple = all_apples[i];
         let apple_row = indexToRowCol(apple)[0];
         let apple_col = indexToRowCol(apple)[1];
         let d = hdcola_check_one_no_turn(snake_head_row,snake_head_col,apple_row,apple_col,direction,snakes);
@@ -99,15 +99,15 @@ function hdcola_check_no_turn(gridSize,snake,apples,direction,snakes){
     return "";
 }
 
-function hdcola_getDirection(gridSize,snake,apples,direction,snakes){
+function hdcola_getDirection(gridSize,snake,all_all_apples,direction,snakes){
     if (direction == ""){
         direction = "r";
     }
-    let d = hdcola_check_no_turn(gridSize,snake,apples,direction,snakes);
+    let d = hdcola_check_no_turn(gridSize,snake,all_all_apples,direction,snakes);
     if (d != ""){
         return d;
     }
-    d = hdcola_check_one_turn(gridSize,snake,apples,direction,snakes)
+    d = hdcola_check_one_turn(gridSize,snake,all_all_apples,direction,snakes)
     if (d != ""){
         return d;
     }
